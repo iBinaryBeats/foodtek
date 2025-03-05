@@ -6,6 +6,7 @@ import 'package:foodtek/core/utils/app_constants.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/features/Authentication/presentation/screens/sign_up_screen.dart';
 import 'package:foodtek/features/Authentication/presentation/widgets/custom_form_field.dart';
+import 'package:foodtek/features/authentication/presentation/screens/forget_password_screen.dart';
 import 'package:foodtek/features/widgets/custom/custom_button.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -121,7 +122,12 @@ class LoginScreen extends StatelessWidget {
                                 Spacer(),
                                 TextButton(
                                   onPressed: () {
-                                    // TODO
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => ForgetPassword(),
+                                      ),
+                                    );
                                   },
                                   child: Text(
                                     'Forgot Password ?',
