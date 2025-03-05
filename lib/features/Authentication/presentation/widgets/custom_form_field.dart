@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodtek/core/utils/responsive.dart';
 
 import '../../../../core/utils/app_colors.dart';
 
@@ -39,18 +40,24 @@ class CustomFormField extends StatelessWidget {
           ),
         ),
 
-        TextFormField(
-          controller: controller,
-          keyboardType: keyboardType,
-          obscureText: obscureText,
-          maxLines: maxLines,
-          validator: validator,
-          onChanged: onChanged,
-          decoration: InputDecoration(
-            floatingLabelBehavior: FloatingLabelBehavior.auto,
-            hintText: hintText,
-            labelStyle: const TextStyle(fontWeight: FontWeight.w500),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+        Container(
+          width: responsiveWidth(context, 295),
+          height: responsiveHeight(context, 46),
+          child: TextFormField(
+            controller: controller,
+            keyboardType: keyboardType,
+            obscureText: obscureText,
+            maxLines: maxLines,
+            validator: validator,
+            onChanged: onChanged,
+            decoration: InputDecoration(
+              floatingLabelBehavior: FloatingLabelBehavior.auto,
+              hintText: hintText,
+              labelStyle: const TextStyle(fontWeight: FontWeight.w500),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
           ),
         ),
       ],

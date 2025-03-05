@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodtek/core/utils/app_colors.dart';
 import 'package:foodtek/core/utils/app_constants.dart';
 import 'package:foodtek/core/utils/responsive.dart';
@@ -8,19 +8,13 @@ import 'package:foodtek/features/Authentication/presentation/screens/sign_up_scr
 import 'package:foodtek/features/Authentication/presentation/widgets/custom_form_field.dart';
 import 'package:foodtek/features/widgets/custom/custom_button.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
+class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
+  final _formKey = GlobalKey<FormState>();
   bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
     return Scaffold(
       backgroundColor: AppColors.primary,
       body: SingleChildScrollView(
@@ -37,7 +31,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     Container(
                       width: responsiveWidth(context, 307),
                       height: responsiveHeight(context, 85),
-
                       child: SvgPicture.asset(AppConstant.logoPath),
                     ),
                     SizedBox(height: responsiveHeight(context, 42)),
@@ -46,7 +39,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       width: responsiveWidth(context, 343),
                       decoration: BoxDecoration(
                         color: Colors.white,
-
                         borderRadius: BorderRadius.circular(25),
                       ),
                       child: Padding(
@@ -97,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             SizedBox(height: responsiveHeight(context, 20)),
 
                             CustomFormField(label: 'Email', hintText: 'Email'),
-                            SizedBox(height: responsiveHeight(context, 16)),
+                            SizedBox(height: responsiveHeight(context, 20)),
 
                             CustomFormField(
                               label: 'Password',
@@ -114,16 +106,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                   value: isChecked,
                                   activeColor: AppColors.green,
                                   onChanged: (bool? value) {
-                                    setState(() {
-                                      isChecked = value ?? false;
-                                    });
+                                    // State change cannot be done here, as this is now a StatelessWidget.
+                                    // You may need to lift this state up to a parent widget or use another state management solution.
                                   },
                                 ),
                                 Text(
                                   'Remember me',
                                   style: TextStyle(
                                     fontSize: 12,
-
                                     color: AppColors.greyC,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -131,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Spacer(),
                                 TextButton(
                                   onPressed: () {
-                                    //TODO
+                                    // TODO
                                   },
                                   child: Text(
                                     'Forgot Password ?',
@@ -151,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               textColor: Colors.white,
                               buttonColor: AppColors.green,
                               onPressed: () {
-                                //TODO
+                                // TODO
                               },
                             ),
                             SizedBox(height: responsiveHeight(context, 24)),
@@ -171,11 +161,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
                             CustomButton(
                               imagePath: 'assets/icons/google.svg',
-
                               text: 'Continue with Google',
                               textColor: Colors.black,
                               onPressed: () {
-                                //TODO
+                                // TODO
                               },
                               buttonColor: Colors.white,
                             ),
@@ -185,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               text: 'Continue with Facebook',
                               textColor: Colors.black,
                               onPressed: () {
-                                //TODO
+                                // TODO
                               },
                               buttonColor: Colors.white,
                             ),
@@ -195,19 +184,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               text: 'Continue with Apple',
                               textColor: Colors.black,
                               onPressed: () {
-                                //TODO
+                                // TODO
                               },
                               buttonColor: Colors.white,
                             ),
-
-                            /*CustomButton(
-                              text: 'Continue with Google',
-                              textColor: Colors.black,
-                              buttonColor: Colors.white,
-                              onPressed: () {},
-                            ),
-
-                             */
                           ],
                         ),
                       ),

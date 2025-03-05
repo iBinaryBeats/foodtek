@@ -5,7 +5,7 @@ import '../../../../core/utils/responsive.dart';
 class CustomTextField extends StatelessWidget {
   final String label;
   final TextEditingController controller;
-  final bool isPassword;
+  final bool obsecureText;
   final TextInputType keyboardType;
   final Widget? suffixIcon;
 
@@ -13,7 +13,7 @@ class CustomTextField extends StatelessWidget {
     Key? key,
     required this.label,
     required this.controller,
-    this.isPassword = false,
+    this.obsecureText = false,
     this.keyboardType = TextInputType.text,
     this.suffixIcon,
   }) : super(key: key);
@@ -25,12 +25,13 @@ class CustomTextField extends StatelessWidget {
       height: responsiveHeight(context, 46),
       child: TextField(
         controller: controller,
-        obscureText: isPassword,
+        obscureText: obsecureText,
         keyboardType: keyboardType,
         decoration: InputDecoration(
           floatingLabelBehavior: FloatingLabelBehavior.always,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
           labelText: label,
+
           suffixIcon: suffixIcon,
         ),
       ),
