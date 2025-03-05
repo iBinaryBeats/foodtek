@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodtek/core/utils/responsive.dart';
+import 'package:foodtek/features/widgets/custom/custom_button.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_constants.dart';
 
@@ -81,11 +82,11 @@ class ForgetPassword extends StatelessWidget {
                       ),
                       SizedBox(height: responsiveHeight(context, 12)),
                       const Text(
-                        'Enter your E-mail or phone and we’ll send you a link to get back into your account',
+                        'Enter your E-mail or phone and we’ll send you a link to get back into\n your account',
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 14, color: Colors.black54),
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: responsiveHeight(context, 24)),
                       TextFormField(
                         controller: emailController,
                         decoration: InputDecoration(
@@ -95,26 +96,15 @@ class ForgetPassword extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 48,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.green,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                          onPressed: () {
-                            // TODO: Handle reset password logic
-                          },
+                      SizedBox(height: responsiveHeight(context, 24)),
 
-                          child: const Text(
-                            'Send',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
+                      CustomButton(
+                        text: 'Send',
+                        textColor: Colors.white,
+                        onPressed: () {
+                          //TODO
+                        },
+                        buttonColor: AppColors.green,
                       ),
                     ],
                   ),
