@@ -39,7 +39,7 @@ class CustomFormField extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-
+        SizedBox(height: responsiveHeight(context, 2)),
         Container(
           width: responsiveWidth(context, 295),
           height: responsiveHeight(context, 46),
