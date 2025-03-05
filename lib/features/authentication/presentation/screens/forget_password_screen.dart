@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodtek/core/utils/responsive.dart';
+import 'package:foodtek/features/authentication/presentation/screens/otp_screen.dart';
 import 'package:foodtek/features/widgets/custom/custom_button.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_constants.dart';
@@ -81,7 +82,7 @@ class ForgetPassword extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: responsiveHeight(context, 12)),
-                      const Text(
+                      Text(
                         'Enter your E-mail or phone and we’ll send you a link to get back into\n your account',
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 14, color: Colors.black54),
@@ -102,7 +103,12 @@ class ForgetPassword extends StatelessWidget {
                         text: 'Send',
                         textColor: Colors.white,
                         onPressed: () {
-                          //TODO
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => OtpScreen(),
+                            ),
+                          );
                         },
                         buttonColor: AppColors.green,
                       ),
