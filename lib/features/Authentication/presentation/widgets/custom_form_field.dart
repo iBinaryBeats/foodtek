@@ -38,6 +38,7 @@ class CustomFormField extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+
         TextFormField(
           controller: controller,
           keyboardType: keyboardType,
@@ -46,6 +47,7 @@ class CustomFormField extends StatelessWidget {
           validator: validator,
           onChanged: onChanged,
           decoration: InputDecoration(
+            floatingLabelBehavior: FloatingLabelBehavior.auto,
             hintText: hintText,
             labelStyle: const TextStyle(fontWeight: FontWeight.w500),
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),

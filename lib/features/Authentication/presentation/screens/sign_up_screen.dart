@@ -5,6 +5,7 @@ import 'package:foodtek/core/utils/app_constants.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/features/Authentication/presentation/screens/login_screen.dart';
 import 'package:foodtek/features/Authentication/presentation/widgets/custom_form_field.dart';
+import 'package:foodtek/features/Authentication/presentation/widgets/custom_text_field.dart';
 import 'package:foodtek/features/widgets/custom/custom_button.dart';
 
 class SignUp extends StatelessWidget {
@@ -12,6 +13,12 @@ class SignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController fullNameController = TextEditingController();
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController birthDateController = TextEditingController();
+    final TextEditingController phoneController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+
     return Scaffold(
       backgroundColor: AppColors.green,
       body: Stack(
@@ -38,7 +45,14 @@ class SignUp extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(children: [Icon(Icons.arrow_back)]),
+                        Row(
+                          children: [
+                            IconButton(
+                              onPressed: () => Navigator.pop(context),
+                              icon: SvgPicture.asset(AppConstant.iconBackPath),
+                            ),
+                          ],
+                        ),
                         SizedBox(height: responsiveHeight(context, 24)),
                         Text(
                           'Sign Up',
@@ -47,6 +61,7 @@ class SignUp extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
+                        SizedBox(height: responsiveHeight(context, 12)),
                         Row(
                           children: [
                             Text(
@@ -75,15 +90,53 @@ class SignUp extends StatelessWidget {
                             ),
                           ],
                         ),
-                        CustomFormField(label: 'Full Name'),
-                        SizedBox(height: responsiveHeight(context, 16)),
-                        CustomFormField(label: 'Email'),
-                        SizedBox(height: responsiveHeight(context, 16)),
-                        CustomFormField(label: 'Birth of date'),
-                        SizedBox(height: responsiveHeight(context, 16)),
-                        CustomFormField(label: 'Phone Number'),
-                        SizedBox(height: responsiveHeight(context, 16)),
-                        CustomFormField(label: 'Password'),
+                        SizedBox(height: responsiveHeight(context, 24)),
+                        //Buttons implements here
+                        CustomTextField(
+                          label: 'Full Name',
+                          controller: fullNameController,
+                        ),
+                        SizedBox(height: responsiveHeight(context, 24)),
+                        CustomTextField(
+                          label: 'Email',
+                          controller: emailController,
+                        ),
+                        SizedBox(height: responsiveHeight(context, 24)),
+
+                        CustomTextField(
+                          label: 'Birth of Date',
+                          controller: birthDateController,
+                          keyboardType: TextInputType.datetime,
+                          suffixIcon: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: SvgPicture.asset(
+                              AppConstant.iconCalendarPath,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: responsiveHeight(context, 24)),
+
+                        CustomTextField(
+                          label: 'Phone Number',
+                          keyboardType: TextInputType.phone,
+
+                          controller: phoneController,
+                        ),
+                        SizedBox(height: responsiveHeight(context, 23)),
+
+                        CustomTextField(
+                          label: 'Set Password',
+                          controller: passwordController,
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              //TODO
+                            },
+                            icon: SvgPicture.asset(AppConstant.iconEyeOff),
+                          ),
+                        ),
+
+                        SizedBox(height: responsiveHeight(context, 30)),
+
                         CustomButton(
                           text: 'Register',
                           textColor: Colors.white,
