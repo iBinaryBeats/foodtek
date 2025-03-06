@@ -4,4 +4,5 @@ class AppConstant {
   static const String iconBackPath = 'assets/icons/icon_back.svg';
   static const String iconCalendarPath = 'assets/icons/icon_cal.svg';
   static const String iconEyeOff = 'assets/icons/eye_off.svg';
+  static const String sentMessagePath = 'assets/icons/sent_message.svg';
 }

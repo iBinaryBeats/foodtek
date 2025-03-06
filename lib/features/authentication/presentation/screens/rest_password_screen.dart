@@ -141,6 +141,9 @@ class RestPassword extends StatelessWidget {
                                     //_formKey.currentState!.validate()
                                     if (_formKey.currentState!.validate()) {
                                       //TODO : THE LOGIC
+                                      Dialog(
+                                        child: Column(children: [Text('a')]),
+                                      );
                                     }
                                   },
                                   buttonColor: AppColors.green,
