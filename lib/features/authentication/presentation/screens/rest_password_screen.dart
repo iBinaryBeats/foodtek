@@ -138,33 +138,52 @@ class RestPassword extends StatelessWidget {
                                   text: 'Update Password',
                                   textColor: Colors.white,
                                   onPressed: () {
-                                    //_formKey.currentState!.validate()
                                     if (_formKey.currentState!.validate()) {
-                                      //TODO : THE LOGIC
                                       showDialog(
                                         context: context,
+                                        barrierDismissible:
+                                            false, // Prevent closing manually
                                         builder: (context) {
-                                          return Container(
-                                            width: 500,
-                                            height: 500,
-                                            decoration: BoxDecoration(
-                                              color: Colors.transparent,
-                                            ),
+                                          return Dialog(
+                                            backgroundColor: Colors.transparent,
                                             child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
+                                              mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 SvgPicture.asset(
                                                   AppConstant
                                                       .congratsPassChangedPath,
+                                                ),
+                                                SizedBox(
+                                                  height: responsiveHeight(
+                                                    context,
+                                                    20,
+                                                  ),
+                                                ),
+                                                SvgPicture.asset(
+                                                  AppConstant
+                                                      .congratsMessagePath,
                                                 ),
                                               ],
                                             ),
                                           );
                                         },
                                       );
+
+                                      // Wait for 2 seconds, then navigate to LoginScreen
+                                      Future.delayed(Duration(seconds: 2), () {
+                                        Navigator.pop(
+                                          context,
+                                        ); // Close the dialog
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => LoginScreen(),
+                                          ),
+                                        );
+                                      });
                                     }
                                   },
+
                                   buttonColor: AppColors.green,
                                 ),
                               ],
