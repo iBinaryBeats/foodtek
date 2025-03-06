@@ -141,8 +141,27 @@ class RestPassword extends StatelessWidget {
                                     //_formKey.currentState!.validate()
                                     if (_formKey.currentState!.validate()) {
                                       //TODO : THE LOGIC
-                                      Dialog(
-                                        child: Column(children: [Text('a')]),
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return Container(
+                                            width: 500,
+                                            height: 500,
+                                            decoration: BoxDecoration(
+                                              color: Colors.transparent,
+                                            ),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                SvgPicture.asset(
+                                                  AppConstant
+                                                      .congratsPassChangedPath,
+                                                ),
+                                              ],
+                                            ),
+                                          );
+                                        },
                                       );
                                     }
                                   },

@@ -113,7 +113,8 @@ class ForgetPassword extends StatelessWidget {
                           );*/
 
                           showDialog(
-                            barrierDismissible: false,
+                            barrierDismissible:
+                                false, //user cannot interact outside the screen
                             context: context,
                             builder: (context) {
                               return Dialog(
