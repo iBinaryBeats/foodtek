@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:foodtek/features/onboarding/domain/entities/on_boarding_card.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +21,8 @@ class OnBoardingContentCustom extends StatelessWidget {
         SizedBox(height: responsiveHeight(context, 45)),
         Text(
           card.title ?? '',
-          style: const TextStyle(
-            fontSize: 32,
+          style: TextStyle(
+            fontSize: 32.sp,
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w600,
             color: AppColors.greyC,
@@ -30,7 +31,7 @@ class OnBoardingContentCustom extends StatelessWidget {
         SizedBox(height: responsiveHeight(context, 8)),
         Text(
           card.descirption ?? '',
-          style: const TextStyle(fontSize: 16, fontFamily: 'Poppins'),
+          style: TextStyle(fontSize: 16.sp, fontFamily: 'Poppins'),
           textAlign: TextAlign.center,
         ),
         SizedBox(height: responsiveHeight(context, 85)),

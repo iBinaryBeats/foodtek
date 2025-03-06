@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/features/authentication/presentation/screens/rest_password_screen.dart';
@@ -75,10 +76,10 @@ class ForgetPassword extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: responsiveHeight(context, 25)),
-                      const Text(
+                      Text(
                         'Reset Password',
                         style: TextStyle(
-                          fontSize: 22,
+                          fontSize: 22.sp,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),
@@ -87,7 +88,10 @@ class ForgetPassword extends StatelessWidget {
                       Text(
                         'Enter your E-mail or phone and we’ll send you a link to get back into\n your account',
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 14, color: Colors.black54),
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          color: Colors.black54,
+                        ),
                       ),
                       SizedBox(height: responsiveHeight(context, 24)),
                       TextFormField(
@@ -120,7 +124,7 @@ class ForgetPassword extends StatelessWidget {
                               return Dialog(
                                 child: Container(
                                   width: responsiveWidth(context, 343),
-                                  height: responsiveHeight(context, 400),
+                                  height: responsiveHeight(context, 425),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(12),
@@ -146,7 +150,7 @@ class ForgetPassword extends StatelessWidget {
                                           textAlign: TextAlign.center,
 
                                           style: TextStyle(
-                                            fontSize: 12,
+                                            fontSize: 12.sp,
                                             fontWeight: FontWeight.w500,
                                           ),
                                         ),
@@ -193,7 +197,7 @@ class ForgetPassword extends StatelessWidget {
                                                     .toString()
                                                     .trim() ==
                                                 '1234') {
-                                              Navigator.pushReplacement(
+                                              Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
                                                   builder:

@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:foodtek/features/onboarding/domain/entities/on_boarding_card.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +25,9 @@ class OnBoardingContent extends StatelessWidget {
         SizedBox(height: responsiveHeight(context, 45)),
         Text(
           card.title ?? '',
-          style: const TextStyle(
-            fontSize: 32,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 25.sp,
             fontFamily: 'Inter',
             fontWeight: FontWeight.w600,
             color: AppColors.greyC,
@@ -34,7 +36,7 @@ class OnBoardingContent extends StatelessWidget {
         SizedBox(height: responsiveHeight(context, 8)),
         Text(
           card.descirption ?? '',
-          style: const TextStyle(fontSize: 16, fontFamily: 'Inter'),
+          style: TextStyle(fontSize: 12.sp, fontFamily: 'Inter'),
           textAlign: TextAlign.center,
         ),
         SizedBox(height: responsiveHeight(context, 85)),
@@ -55,7 +57,7 @@ class OnBoardingContent extends StatelessWidget {
               shadowColor: Colors.transparent,
               backgroundColor: Colors.transparent,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(30.r),
               ),
             ),
             child: const Text('Continue'),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodtek/core/utils/app_colors.dart';
 import 'package:foodtek/core/utils/responsive.dart';
@@ -20,7 +21,7 @@ class ChooseLocationScreen extends StatelessWidget {
           Text(
             'Turn On Your Location',
             style: TextStyle(
-              fontSize: 32,
+              fontSize: 25.sp,
               fontWeight: FontWeight.w600,
               fontFamily: 'Poppins',
               color: AppColors.textColorGrey,
@@ -30,7 +31,7 @@ class ChooseLocationScreen extends StatelessWidget {
           Text(
             textAlign: TextAlign.center,
             'To Continues, Let Your Device Turn\nOn Location, Which Uses Google’s\nLocation Service',
-            style: TextStyle(color: AppColors.textColorGrey, fontSize: 16),
+            style: TextStyle(color: AppColors.textColorGrey, fontSize: 14.sp),
           ),
           SizedBox(height: responsiveHeight(context, 40)),
           Container(
@@ -48,7 +49,7 @@ class ChooseLocationScreen extends StatelessWidget {
               },
               child: Text(
                 'Yes, Turn It On',
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12.sp),
               ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.transparent,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodtek/core/utils/app_colors.dart';
 import 'package:foodtek/core/utils/app_constants.dart';
@@ -29,7 +30,7 @@ class RestPassword extends StatelessWidget {
                   SvgPicture.asset(AppConstant.logoPath),
                   SizedBox(height: responsiveHeight(context, 46)),
                   Container(
-                    height: responsiveHeight(context, 423),
+                    height: responsiveHeight(context, 455),
                     width: responsiveWidth(context, 343),
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -58,7 +59,7 @@ class RestPassword extends StatelessWidget {
                             'Rest Password',
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 32,
+                              fontSize: 32.sp,
                             ),
                           ),
 
@@ -67,7 +68,7 @@ class RestPassword extends StatelessWidget {
                               Text(
                                 'Want to try with my current password?',
                                 style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 10.sp,
                                   color: AppColors.greyC,
                                 ),
                               ),
@@ -83,7 +84,7 @@ class RestPassword extends StatelessWidget {
                                 child: Text(
                                   'Login',
                                   style: TextStyle(
-                                    fontSize: 12,
+                                    fontSize: 12.sp,
                                     color: AppColors.green,
                                   ),
                                 ),
@@ -115,6 +116,7 @@ class RestPassword extends StatelessWidget {
                                 ),
                                 SizedBox(height: responsiveHeight(context, 16)),
                                 _buildLabel('Confirm new Password'),
+                                SizedBox(height: responsiveHeight(context, 16)),
 
                                 TextFormField(
                                   controller: _confirmPasswordController,
@@ -206,7 +208,7 @@ class RestPassword extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        fontSize: 12,
+        fontSize: 12.sp,
         fontWeight: FontWeight.bold,
         color: Colors.grey[600],
       ),
@@ -216,7 +218,7 @@ class RestPassword extends StatelessWidget {
   InputDecoration _inputDecoration(String hintText) {
     return InputDecoration(
       hintText: hintText,
-      hintStyle: const TextStyle(fontSize: 14),
+      hintStyle: TextStyle(fontSize: 14.sp),
       contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
       errorStyle: const TextStyle(height: 0),

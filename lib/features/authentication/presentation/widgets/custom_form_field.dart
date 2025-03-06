@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 
 import '../../../../core/utils/app_colors.dart';
@@ -55,7 +56,7 @@ class CustomFormField extends StatelessWidget {
               hintText: hintText,
               labelStyle: const TextStyle(fontWeight: FontWeight.w500),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(10.r),
               ),
             ),
           ),

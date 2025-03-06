@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/features/onboarding/presentation/screens/on_boarding_screen.dart';
 import 'package:foodtek/features/splash/presentation/screens/splash_screen.dart';
 
@@ -11,17 +12,19 @@ class FoodTek extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        fontFamily: 'Inter',
-        textTheme: TextTheme(
-          bodyLarge: TextStyle(fontFamily: 'Inter'),
-          bodyMedium: TextStyle(fontFamily: 'Inter'),
-          bodySmall: TextStyle(fontFamily: 'Inter'),
+    return ScreenUtilInit(
+      child: MaterialApp(
+        theme: ThemeData(
+          fontFamily: 'Inter',
+          textTheme: TextTheme(
+            bodyLarge: TextStyle(fontFamily: 'Inter'),
+            bodyMedium: TextStyle(fontFamily: 'Inter'),
+            bodySmall: TextStyle(fontFamily: 'Inter'),
+          ),
         ),
+        debugShowCheckedModeBanner: false,
+        home: SplashScreen(),
       ),
-      debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
     );
   }
 }
