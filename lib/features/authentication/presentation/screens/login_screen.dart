@@ -7,6 +7,7 @@ import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/features/Authentication/presentation/screens/sign_up_screen.dart';
 import 'package:foodtek/features/Authentication/presentation/widgets/custom_form_field.dart';
 import 'package:foodtek/features/authentication/presentation/screens/forget_password_screen.dart';
+import 'package:foodtek/features/dashboard/presentation/screens/home_screen.dart';
 import 'package:foodtek/features/widgets/custom/custom_button.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -17,7 +18,12 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //   extendBodyBehindAppBar: true,
       backgroundColor: AppColors.primary,
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false,
+      //   backgroundColor: Colors.transparent,
+      // ),
       body: SingleChildScrollView(
         child: Stack(
           children: [
@@ -147,7 +153,12 @@ class LoginScreen extends StatelessWidget {
                               textColor: Colors.white,
                               buttonColor: AppColors.green,
                               onPressed: () {
-                                // TODO
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => HomeScreen(),
+                                  ),
+                                );
                               },
                             ),
                             SizedBox(height: responsiveHeight(context, 24)),

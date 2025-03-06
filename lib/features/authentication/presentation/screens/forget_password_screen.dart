@@ -193,7 +193,7 @@ class ForgetPassword extends StatelessWidget {
                                                     .toString()
                                                     .trim() ==
                                                 '1234') {
-                                              Navigator.push(
+                                              Navigator.pushReplacement(
                                                 context,
                                                 MaterialPageRoute(
                                                   builder:
