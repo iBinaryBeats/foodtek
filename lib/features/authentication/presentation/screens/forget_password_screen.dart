@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodtek/core/utils/responsive.dart';
-import 'package:foodtek/features/authentication/presentation/screens/otp_screen.dart';
+import 'package:foodtek/features/authentication/presentation/screens/rest_password_screen.dart';
 import 'package:foodtek/features/widgets/custom/custom_button.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_constants.dart';
@@ -106,7 +106,7 @@ class ForgetPassword extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => OtpScreen(),
+                              builder: (context) => RestPassword(),
                             ),
                           );
                         },
