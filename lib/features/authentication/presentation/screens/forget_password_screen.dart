@@ -124,7 +124,7 @@ class ForgetPassword extends StatelessWidget {
                               return Dialog(
                                 child: Container(
                                   width: responsiveWidth(context, 343),
-                                  height: responsiveHeight(context, 425),
+                                  height: responsiveHeight(context, 525),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(12),

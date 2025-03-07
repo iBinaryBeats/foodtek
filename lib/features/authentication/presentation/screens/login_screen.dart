@@ -34,7 +34,7 @@ class LoginScreen extends StatelessWidget {
               key: _formKey,
               child: Column(
                 children: [
-                  SizedBox(height: responsiveHeight(context, 74)),
+                  SizedBox(height: responsiveHeight(context, 65)),
                   Container(
                     width: responsiveWidth(context, 307),
                     height: responsiveHeight(context, 100),
@@ -42,7 +42,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   SizedBox(height: responsiveHeight(context, 42)),
                   Container(
-                    height: responsiveHeight(context, 661),
+                    height: responsiveHeight(context, 675),
                     width: responsiveWidth(context, 343),
                     decoration: BoxDecoration(
                       color: Colors.white,

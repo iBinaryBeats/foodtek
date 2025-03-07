@@ -19,19 +19,19 @@ class RestPassword extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.green,
       resizeToAvoidBottomInset: true,
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            SvgPicture.asset(AppConstant.patternPath),
-            Positioned.fill(
+      body: Stack(
+        children: [
+          SvgPicture.asset(AppConstant.patternPath),
+          Positioned.fill(
+            child: SingleChildScrollView(
               child: Column(
                 children: [
                   SizedBox(height: responsiveHeight(context, 70)),
                   SvgPicture.asset(AppConstant.logoPath),
                   SizedBox(height: responsiveHeight(context, 46)),
                   Container(
-                    height: responsiveHeight(context, 455),
-                    width: responsiveWidth(context, 343),
+                    height: responsiveHeight(context, 545),
+                    width: responsiveWidth(context, 365),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12),
@@ -198,8 +198,8 @@ class RestPassword extends StatelessWidget {
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

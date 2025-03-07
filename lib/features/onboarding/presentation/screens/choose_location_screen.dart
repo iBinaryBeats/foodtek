@@ -33,7 +33,7 @@ class ChooseLocationScreen extends StatelessWidget {
             'To Continues, Let Your Device Turn\nOn Location, Which Uses Google’s\nLocation Service',
             style: TextStyle(color: AppColors.textColorGrey, fontSize: 14.sp),
           ),
-          SizedBox(height: responsiveHeight(context, 40)),
+          SizedBox(height: responsiveHeight(context, 35)),
           Container(
             width: responsiveWidth(context, 307),
             height: responsiveHeight(context, 48),
