@@ -116,7 +116,7 @@ class HomeScreen extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {
                         isTapped = index;
-
+                        print('debugging :{$index} ');
                         //TODO: smth
                       },
                       child: Container(
@@ -166,7 +166,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: responsiveHeight(context, 15)),
-            Container(
+            /*Container(
               width: double.infinity,
               decoration: BoxDecoration(
                 color: AppColors.green,
@@ -178,6 +178,7 @@ class HomeScreen extends StatelessWidget {
                 },
               ),
             ),
+            */
           ],
         ),
       ),
