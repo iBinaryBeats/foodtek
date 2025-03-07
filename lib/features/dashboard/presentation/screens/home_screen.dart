@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
     {"icon": AppConstant.hotDogIconPathPG, "title": "Sandwich"},
     {"icon": AppConstant.pizzaIconPathPG, "title": "Pizza"},
   ];
-  int isTapped = 2;
+  int isTapped = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
