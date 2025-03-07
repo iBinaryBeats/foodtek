@@ -42,7 +42,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   SizedBox(height: responsiveHeight(context, 42)),
                   Container(
-                    height: responsiveHeight(context, 675),
+                    height: responsiveHeight(context, 680),
                     width: responsiveWidth(context, 343),
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -51,7 +51,7 @@ class LoginScreen extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.symmetric(
                         horizontal: responsiveWidth(context, 16),
-                        vertical: responsiveHeight(context, 16),
+                        vertical: responsiveHeight(context, 8),
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
