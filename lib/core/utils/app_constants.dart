@@ -3,6 +3,7 @@ class AppConstant {
 
   static const String iconsPath = 'assets/icons/';
 
+  //SVG
   static const String patternPath = '${iconsPath}on_boarding_pattern.svg';
   static const String logoPath = '${iconsPath}logo.svg';
   static const String iconBackPath = '${iconsPath}icon_back.svg';
@@ -16,10 +17,10 @@ class AppConstant {
   static const String locationArrow = '${iconsPath}current_location.svg';
   static const String notificationEmpty = '${iconsPath}notification_empty.svg';
   static const String searchIcon = '${iconsPath}search_icon.svg';
-
-  //static const String burgerIconPath = '${iconsPath}burger_icon.svg';
-  // static const String hotDogIconPath = '${iconsPath}hotdog_icon.svg';
-  // static const String pizzaIconPath = '${iconsPath}pizza_icon.svg';
+  //PNG
+  static const String burgerIconPathPG = '${iconsPath}burger.png';
+  static const String hotDogIconPathPG = '${iconsPath}hotdog.png';
+  static const String pizzaIconPathPG = '${iconsPath}pizza.png';
 
   //data :
   static const String baseURL = '';
