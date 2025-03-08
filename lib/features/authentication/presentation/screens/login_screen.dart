@@ -18,6 +18,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(MediaQuery.sizeOf(context).height);
     return Scaffold(
       //   extendBodyBehindAppBar: true,
       backgroundColor: AppColors.primary,
@@ -32,185 +33,197 @@ class LoginScreen extends StatelessWidget {
           Positioned.fill(
             child: Form(
               key: _formKey,
-              child: Column(
-                children: [
-                  SizedBox(height: responsiveHeight(context, 65)),
-                  Container(
-                    width: responsiveWidth(context, 307),
-                    height: responsiveHeight(context, 100),
-                    child: SvgPicture.asset(AppConstant.logoPath),
-                  ),
-                  SizedBox(height: responsiveHeight(context, 42)),
-                  Container(
-                    height: responsiveHeight(context, 680),
-                    width: responsiveWidth(context, 343),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(25),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(height: responsiveHeight(context, 65)),
+                    Container(
+                      width: responsiveWidth(context, 307),
+                      height: responsiveHeight(context, 100),
+                      child: SvgPicture.asset(AppConstant.logoPath),
                     ),
-                    child: Padding(
+                    SizedBox(height: responsiveHeight(context, 42)),
+                    Padding(
                       padding: EdgeInsets.symmetric(
-                        horizontal: responsiveWidth(context, 16),
-                        vertical: responsiveHeight(context, 8),
+                        horizontal: responsiveWidth(context, 35),
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Login',
-                            style: TextStyle(
-                              fontSize: 32.sp,
-                              fontWeight: FontWeight.w700,
-                            ),
+                      child: Container(
+                        // height: responsiveHeight(context, 680),
+                        // width: responsiveWidth(context, 343),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: responsiveWidth(context, 4),
+                            vertical: responsiveHeight(context, 12),
                           ),
-                          SizedBox(height: responsiveHeight(context, 12)),
-                          RichText(
-                            text: TextSpan(
-                              text: 'Don\'t have an account?  ',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                color: AppColors.greyC,
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: 'Sign Up',
-                                  style: TextStyle(
-                                    color: AppColors.primary,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  recognizer:
-                                      TapGestureRecognizer()
-                                        ..onTap = () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => SignUp(),
-                                            ),
-                                          );
-                                        },
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: responsiveHeight(context, 12)),
-
-                          CustomFormField(label: 'Email', hintText: 'Email'),
-                          SizedBox(height: responsiveHeight(context, 12)),
-
-                          CustomFormField(
-                            label: 'Password',
-                            hintText: 'Password',
-                            obscureText: true,
-                          ),
-                          SizedBox(height: responsiveHeight(context, 12)),
-
-                          Row(
+                          child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Checkbox(
-                                value: isChecked,
-                                activeColor: AppColors.green,
-                                onChanged: (bool? value) {
-                                  // State change cannot be done here, as this is now a StatelessWidget.
-                                  // You may need to lift this state up to a parent widget or use another state management solution.
-                                },
-                              ),
                               Text(
-                                'Remember me',
+                                'Login',
                                 style: TextStyle(
-                                  fontSize: 11.sp,
-                                  color: AppColors.greyC,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 32.sp,
+                                  fontWeight: FontWeight.w700,
                                 ),
                               ),
-                              Spacer(),
-                              TextButton(
+                              SizedBox(height: responsiveHeight(context, 12)),
+                              RichText(
+                                text: TextSpan(
+                                  text: 'Don\'t have an account?  ',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    color: AppColors.greyC,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: 'Sign Up',
+                                      style: TextStyle(
+                                        color: AppColors.primary,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      recognizer:
+                                          TapGestureRecognizer()
+                                            ..onTap = () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder:
+                                                      (context) => SignUp(),
+                                                ),
+                                              );
+                                            },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: responsiveHeight(context, 12)),
+
+                              CustomFormField(
+                                label: 'Email',
+                                hintText: 'Email',
+                              ),
+                              SizedBox(height: responsiveHeight(context, 12)),
+
+                              CustomFormField(
+                                label: 'Password',
+                                hintText: 'Password',
+                                obscureText: true,
+                              ),
+                              SizedBox(height: responsiveHeight(context, 12)),
+
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Checkbox(
+                                    value: isChecked,
+                                    activeColor: AppColors.green,
+                                    onChanged: (bool? value) {
+                                      // State change cannot be done here, as this is now a StatelessWidget.
+                                      // You may need to lift this state up to a parent widget or use another state management solution.
+                                    },
+                                  ),
+                                  Text(
+                                    'Remember me',
+                                    style: TextStyle(
+                                      fontSize: 11.sp,
+                                      color: AppColors.greyC,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  //    Spacer(),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder:
+                                              (context) => ForgetPassword(),
+                                        ),
+                                      );
+                                    },
+                                    child: Text(
+                                      'Forgot Password ?',
+                                      style: TextStyle(
+                                        fontSize: 11.sp,
+                                        color: AppColors.green,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: responsiveHeight(context, 18)),
+
+                              CustomButton(
+                                text: 'Log In',
+                                textColor: Colors.white,
+                                buttonColor: AppColors.green,
                                 onPressed: () {
-                                  Navigator.push(
+                                  Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => ForgetPassword(),
+                                      builder: (context) => HomeScreen(),
                                     ),
                                   );
                                 },
-                                child: Text(
-                                  'Forgot Password ?',
-                                  style: TextStyle(
-                                    fontSize: 11.sp,
-                                    color: AppColors.green,
-                                    fontWeight: FontWeight.w600,
+                              ),
+                              SizedBox(height: responsiveHeight(context, 24)),
+                              Row(
+                                children: [
+                                  Expanded(child: Divider()),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: responsiveWidth(context, 8),
+                                    ),
+                                    child: Text('Or'),
                                   ),
-                                ),
+                                  Expanded(child: Divider()),
+                                ],
                               ),
+                              SizedBox(height: responsiveHeight(context, 15)),
+
+                              CustomButton(
+                                imagePath: 'assets/icons/google.svg',
+                                text: 'Continue with Google',
+                                textColor: Colors.black,
+                                onPressed: () {
+                                  // TODO
+                                },
+                                buttonColor: Colors.white,
+                              ),
+                              SizedBox(height: responsiveHeight(context, 12)),
+                              CustomButton(
+                                imagePath: 'assets/icons/facebook.svg',
+                                text: 'Continue with Facebook',
+                                textColor: Colors.black,
+                                onPressed: () {
+                                  // TODO
+                                },
+                                buttonColor: Colors.white,
+                              ),
+                              SizedBox(height: responsiveHeight(context, 10)),
+                              CustomButton(
+                                imagePath: 'assets/icons/apple.svg',
+                                text: 'Continue with Apple',
+                                textColor: Colors.black,
+                                onPressed: () {
+                                  // TODO
+                                },
+                                buttonColor: Colors.white,
+                              ),
+                              //            Spacer(),
                             ],
                           ),
-                          SizedBox(height: responsiveHeight(context, 18)),
-
-                          CustomButton(
-                            text: 'Log In',
-                            textColor: Colors.white,
-                            buttonColor: AppColors.green,
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => HomeScreen(),
-                                ),
-                              );
-                            },
-                          ),
-                          SizedBox(height: responsiveHeight(context, 24)),
-                          Row(
-                            children: [
-                              Expanded(child: Divider()),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: responsiveWidth(context, 8),
-                                ),
-                                child: Text('Or'),
-                              ),
-                              Expanded(child: Divider()),
-                            ],
-                          ),
-                          SizedBox(height: responsiveHeight(context, 15)),
-
-                          CustomButton(
-                            imagePath: 'assets/icons/google.svg',
-                            text: 'Continue with Google',
-                            textColor: Colors.black,
-                            onPressed: () {
-                              // TODO
-                            },
-                            buttonColor: Colors.white,
-                          ),
-                          SizedBox(height: responsiveHeight(context, 12)),
-                          CustomButton(
-                            imagePath: 'assets/icons/facebook.svg',
-                            text: 'Continue with Facebook',
-                            textColor: Colors.black,
-                            onPressed: () {
-                              // TODO
-                            },
-                            buttonColor: Colors.white,
-                          ),
-                          SizedBox(height: responsiveHeight(context, 10)),
-                          CustomButton(
-                            imagePath: 'assets/icons/apple.svg',
-                            text: 'Continue with Apple',
-                            textColor: Colors.black,
-                            onPressed: () {
-                              // TODO
-                            },
-                            buttonColor: Colors.white,
-                          ),
-                          Spacer(),
-                        ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
