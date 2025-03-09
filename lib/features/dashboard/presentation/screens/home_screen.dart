@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodtek/core/utils/app_constants.dart';
 import 'package:foodtek/core/utils/responsive.dart';
+import 'package:foodtek/features/dashboard/presentation/widgets/dashboard_dots.dart';
 
 import '../../../../core/utils/app_colors.dart';
 
@@ -15,7 +16,18 @@ class HomeScreen extends StatelessWidget {
     {"icon": AppConstant.hotDogIconPathPG, "title": "Sandwich"},
     {"icon": AppConstant.pizzaIconPathPG, "title": "Pizza"},
   ];
-  int isTapped = 2;
+
+  List<String> offers = [
+    'assets/icons/group_offer.png',
+    'assets/icons/group_offer.png',
+    'assets/icons/group_offer.png',
+    'assets/icons/group_offer.png',
+    'assets/icons/group_offer.png',
+  ];
+  int isTapped = 0;
+  final PageController _pageController = PageController();
+  final ValueNotifier<int> _currentPageOffer = ValueNotifier<int>(0);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -166,19 +178,77 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: responsiveHeight(context, 15)),
-            /*Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: AppColors.green,
-                borderRadius: BorderRadius.circular(15),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: responsiveWidth(context, 16),
               ),
-              child: ListView.builder(
-                itemBuilder: (context, index) {
-                  //TODO
-                },
+              child: SizedBox(
+                height: responsiveHeight(context, 137),
+                child: PageView.builder(
+                  controller: _pageController,
+                  itemCount: offers.length,
+                  scrollDirection: Axis.horizontal,
+                  onPageChanged: (index) {
+                    _currentPageOffer.value = index;
+                  },
+
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: responsiveWidth(context, 5),
+                      ),
+                      child: Image.asset(offers[index]),
+                    );
+                  },
+                ),
               ),
             ),
-            */
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: List.generate(
+                offers.length,
+                (index) => ValueListenableBuilder<int>(
+                  valueListenable: _currentPageOffer,
+                  builder: (context, value, child) {
+                    return DashboardDot(isActive: value == index);
+                  },
+                ),
+              ),
+            ),
+            SizedBox(height: responsiveHeight(context, 10)),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: responsiveWidth(context, 16),
+              ),
+              child: Row(
+                children: [
+                  Text(
+                    'Top Rated',
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            SizedBox(height: responsiveHeight(context, 10)),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.star, color: AppColors.midYellow),
+                      Text('3.5'),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
