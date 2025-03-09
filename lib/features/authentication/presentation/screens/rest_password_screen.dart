@@ -30,7 +30,6 @@ class RestPassword extends StatelessWidget {
                   SvgPicture.asset(AppConstant.logoPath),
                   SizedBox(height: responsiveHeight(context, 46)),
                   Container(
-                    height: responsiveHeight(context, 545),
                     width: responsiveWidth(context, 365),
                     decoration: BoxDecoration(
                       color: Colors.white,

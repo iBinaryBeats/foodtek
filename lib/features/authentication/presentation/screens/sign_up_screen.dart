@@ -22,143 +22,139 @@ class SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.green,
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            SvgPicture.asset(AppConstant.patternPath),
-            Positioned.fill(
-              child: Column(
-                children: [
-                  SizedBox(height: responsiveHeight(context, 74)),
-                  SvgPicture.asset(AppConstant.logoPath),
-                  SizedBox(height: responsiveHeight(context, 42)),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
+      body: Stack(
+        children: [
+          SvgPicture.asset(AppConstant.patternPath),
+          Positioned.fill(
+            child: Column(
+              children: [
+                SizedBox(height: responsiveHeight(context, 74)),
+                SvgPicture.asset(AppConstant.logoPath),
+                SizedBox(height: responsiveHeight(context, 42)),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  width: responsiveWidth(context, 343),
+                  //  height: responsiveHeight(context, 672),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: responsiveWidth(context, 24),
+                      vertical: responsiveHeight(context, 10),
                     ),
-                    width: responsiveWidth(context, 343),
-                    height: responsiveHeight(context, 672),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: responsiveWidth(context, 24),
-                        vertical: responsiveHeight(context, 24),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              IconButton(
-                                onPressed: () => Navigator.pop(context),
-                                icon: SvgPicture.asset(
-                                  AppConstant.iconBackPath,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: responsiveHeight(context, 24)),
-                          Text(
-                            'Sign Up',
-                            style: TextStyle(
-                              fontSize: 32.sp,
-                              fontWeight: FontWeight.w600,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            IconButton(
+                              onPressed: () => Navigator.pop(context),
+                              icon: SvgPicture.asset(AppConstant.iconBackPath),
                             ),
+                          ],
+                        ),
+                        SizedBox(height: responsiveHeight(context, 24)),
+                        Text(
+                          'Sign Up',
+                          style: TextStyle(
+                            fontSize: 32.sp,
+                            fontWeight: FontWeight.w600,
                           ),
-                          SizedBox(height: responsiveHeight(context, 9)),
-                          Row(
-                            children: [
-                              Text(
-                                'Already have an account?',
-                                style: TextStyle(
-                                  color: AppColors.textColorGrey,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => LoginScreen(),
-                                    ),
-                                  );
-                                },
-                                child: Text(
-                                  'Login',
-                                  style: TextStyle(
-                                    color: AppColors.green,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: responsiveHeight(context, 24)),
-                          //Buttons implements here
-                          CustomTextField(
-                            label: 'Full Name',
-                            controller: fullNameController,
-                          ),
-                          SizedBox(height: responsiveHeight(context, 24)),
-                          CustomTextField(
-                            label: 'Email',
-                            controller: emailController,
-                          ),
-                          SizedBox(height: responsiveHeight(context, 24)),
-
-                          CustomTextField(
-                            label: 'Birth of Date',
-                            controller: birthDateController,
-                            keyboardType: TextInputType.datetime,
-                            suffixIcon: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: SvgPicture.asset(
-                                AppConstant.iconCalendarPath,
+                        ),
+                        SizedBox(height: responsiveHeight(context, 9)),
+                        Row(
+                          children: [
+                            Text(
+                              'Already have an account?',
+                              style: TextStyle(
+                                color: AppColors.textColorGrey,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
-                          ),
-                          SizedBox(height: responsiveHeight(context, 24)),
-
-                          CustomTextField(
-                            label: 'Phone Number',
-                            keyboardType: TextInputType.phone,
-
-                            controller: phoneController,
-                          ),
-                          SizedBox(height: responsiveHeight(context, 23)),
-
-                          CustomTextField(
-                            label: 'Set Password',
-                            obsecureText: true,
-                            controller: passwordController,
-                            suffixIcon: IconButton(
+                            TextButton(
                               onPressed: () {
-                                //TODO
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => LoginScreen(),
+                                  ),
+                                );
                               },
-                              icon: SvgPicture.asset(AppConstant.iconEyeOff),
+                              child: Text(
+                                'Login',
+                                style: TextStyle(
+                                  color: AppColors.green,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: responsiveHeight(context, 24)),
+                        //Buttons implements here
+                        CustomTextField(
+                          label: 'Full Name',
+                          controller: fullNameController,
+                        ),
+                        SizedBox(height: responsiveHeight(context, 24)),
+                        CustomTextField(
+                          label: 'Email',
+                          controller: emailController,
+                        ),
+                        SizedBox(height: responsiveHeight(context, 24)),
+
+                        CustomTextField(
+                          label: 'Birth of Date',
+                          controller: birthDateController,
+                          keyboardType: TextInputType.datetime,
+                          suffixIcon: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: SvgPicture.asset(
+                              AppConstant.iconCalendarPath,
                             ),
                           ),
+                        ),
+                        SizedBox(height: responsiveHeight(context, 24)),
 
-                          SizedBox(height: responsiveHeight(context, 30)),
+                        CustomTextField(
+                          label: 'Phone Number',
+                          keyboardType: TextInputType.phone,
 
-                          CustomButton(
-                            text: 'Register',
-                            textColor: Colors.white,
+                          controller: phoneController,
+                        ),
+                        SizedBox(height: responsiveHeight(context, 23)),
+
+                        CustomTextField(
+                          label: 'Set Password',
+                          obsecureText: true,
+                          controller: passwordController,
+                          suffixIcon: IconButton(
                             onPressed: () {
                               //TODO
                             },
-                            buttonColor: AppColors.green,
+                            icon: SvgPicture.asset(AppConstant.iconEyeOff),
                           ),
-                        ],
-                      ),
+                        ),
+
+                        SizedBox(height: responsiveHeight(context, 30)),
+
+                        CustomButton(
+                          text: 'Register',
+                          textColor: Colors.white,
+                          onPressed: () {
+                            //TODO
+                          },
+                          buttonColor: AppColors.green,
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
