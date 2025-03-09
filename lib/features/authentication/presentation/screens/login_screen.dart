@@ -60,6 +60,7 @@ class LoginScreen extends StatelessWidget {
                             vertical: responsiveHeight(context, 12),
                           ),
                           child: Column(
+                            mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -116,8 +117,6 @@ class LoginScreen extends StatelessWidget {
                               SizedBox(height: responsiveHeight(context, 12)),
 
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Checkbox(
                                     value: isChecked,
@@ -135,7 +134,8 @@ class LoginScreen extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  //    Spacer(),
+
+                                  Spacer(),
                                   TextButton(
                                     onPressed: () {
                                       Navigator.push(
