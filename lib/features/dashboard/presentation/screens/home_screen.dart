@@ -83,7 +83,7 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
 
             children: [
-              SizedBox(height: responsiveHeight(context, 50)),
+              SizedBox(height: responsiveHeight(context, 40)),
               ListTile(
                 leading: Container(
                   height: responsiveHeight(context, 34),
@@ -132,7 +132,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: responsiveHeight(context, 20)),
+              SizedBox(height: responsiveHeight(context, 10)),
 
               SearchBar(
                 shape: MaterialStateProperty.resolveWith<OutlinedBorder>((
