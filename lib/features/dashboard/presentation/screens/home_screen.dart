@@ -55,23 +55,24 @@ class HomeScreen extends StatelessWidget {
     {'imagePath': 'assets/images/item1.png', 'price': 103.00},
     {'imagePath': 'assets/images/item2.png', 'price': 50.00},
     {'imagePath': 'assets/images/item3.png', 'price': 12.99},
-
     {'imagePath': 'assets/images/item1.png', 'price': 103.00},
     {'imagePath': 'assets/images/item2.png', 'price': 50.00},
     {'imagePath': 'assets/images/item3.png', 'price': 12.99},
     {'imagePath': 'assets/images/item4.png', 'price': 8.20},
     {'imagePath': 'assets/images/item4.png', 'price': 8.20},
   ];
-  String selectedCategory = "";
+
   final ValueNotifier<int> isTapped = ValueNotifier<int>(0);
   final PageController _pageController = PageController();
   final ValueNotifier<int> _currentPageOffer = ValueNotifier<int>(0);
+  final ValueNotifier<String> selectedCategory = ValueNotifier<String>(
+    '',
+  ); // Use ValueNotifier
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-
       body: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: responsiveWidth(context, 18),
@@ -79,9 +80,6 @@ class HomeScreen extends StatelessWidget {
         ),
         child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-
             children: [
               SizedBox(height: responsiveHeight(context, 40)),
               ListTile(
@@ -148,7 +146,6 @@ class HomeScreen extends StatelessWidget {
                 ),
                 hintText: 'Search menu, restaurant or etc',
                 shadowColor: WidgetStateColor.transparent,
-
                 leading: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: SvgPicture.asset(AppConstant.searchIcon),
@@ -173,9 +170,8 @@ class HomeScreen extends StatelessWidget {
                             child: GestureDetector(
                               onTap: () {
                                 isTapped.value = index;
-                                selectedCategory = categories[index]['title']!;
-                                print('debugging :${isTapped.value} ');
-                                print(selectedCategory);
+                                selectedCategory.value =
+                                    categories[index]['title']!; // Update ValueNotifier
                               },
                               child: Container(
                                 decoration: BoxDecoration(
@@ -232,177 +228,166 @@ class HomeScreen extends StatelessWidget {
               ),
 
               SizedBox(height: responsiveHeight(context, 5)),
-
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: responsiveWidth(context, 16),
-                ),
-                child: SizedBox(
-                  height: responsiveHeight(context, 137),
-                  child: PageView.builder(
-                    controller: _pageController,
-                    itemCount: offers.length,
-                    scrollDirection: Axis.horizontal,
-                    onPageChanged: (index) {
-                      _currentPageOffer.value = index;
-                    },
-
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: responsiveWidth(context, 5),
+              ValueListenableBuilder<String>(
+                valueListenable: selectedCategory,
+                builder: (context, category, child) {
+                  if (category == 'All') {
+                    return Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: responsiveWidth(context, 16),
+                          ),
+                          child: SizedBox(
+                            height: responsiveHeight(context, 137),
+                            child: PageView.builder(
+                              controller: _pageController,
+                              itemCount: offers.length,
+                              scrollDirection: Axis.horizontal,
+                              onPageChanged: (index) {
+                                _currentPageOffer.value = index;
+                              },
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: responsiveWidth(context, 5),
+                                  ),
+                                  child: Image.asset(offers[index]),
+                                );
+                              },
+                            ),
+                          ),
                         ),
-                        child: Image.asset(offers[index]),
-                      );
-                    },
-                  ),
-                ),
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: List.generate(
-                  offers.length,
-                  (index) => ValueListenableBuilder<int>(
-                    valueListenable: _currentPageOffer,
-                    builder: (context, value, child) {
-                      return DashboardDot(isActive: value == index);
-                    },
-                  ),
-                ),
-              ),
-              SizedBox(height: responsiveHeight(context, 10)),
-              CustomTitle(text: 'Top Rated'),
-              SizedBox(height: responsiveHeight(context, 10)),
-
-              SizedBox(
-                height: responsiveHeight(context, 200),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: List.generate(
-                      foodItems.length,
-                      (index) => Padding(
-                        padding: EdgeInsets.only(
-                          right: 10.w,
-                        ), // Add spacing between items
-                        child: FoodCard(
-                          image: foodItems[index]['image'],
-                          title: foodItems[index]['title'],
-                          description: foodItems[index]['description'],
-                          rating: foodItems[index]['rating'],
-                          price: foodItems[index]['price'],
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: List.generate(
+                            offers.length,
+                            (index) => ValueListenableBuilder<int>(
+                              valueListenable: _currentPageOffer,
+                              builder: (context, value, child) {
+                                return DashboardDot(isActive: value == index);
+                              },
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-
-              // SizedBox(
-              //   height: responsiveHeight(context, 209),
-              //   child: ListView.builder(
-              //     scrollDirection: Axis.horizontal,
-              //     itemCount: foodItems.length,
-              //     padding: EdgeInsets.symmetric(
-              //       horizontal: responsiveWidth(context, 10),
-              //     ),
-              //     itemBuilder: (context, index) {
-              //       return Padding(
-              //         padding: EdgeInsets.symmetric(
-              //           horizontal: responsiveWidth(context, 5),
-              //         ),
-              //         child: FoodCard(
-              //           image: foodItems[index]['image'],
-              //           title: foodItems[index]['title'],
-              //           description: foodItems[index]['description'],
-              //           rating: foodItems[index]['rating'],
-              //           price: foodItems[index]['price'],
-              //         ),
-              //       );
-              //     },
-              //   ),
-              // ),
-              SizedBox(height: responsiveHeight(context, 5)),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: responsiveWidth(context, 8),
-                ),
-                child: Row(
-                  children: [
-                    Text(
-                      'Recommend',
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Spacer(),
-                    InkWell(
-                      onTap: () {
-                        //TODO
-                      },
-                      child: Text(
-                        'View All',
-                        style: TextStyle(
-                          color: AppColors.green,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.keyboard_arrow_right,
-                        color: AppColors.green,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              SizedBox(
-                height: responsiveHeight(context, 109),
-                child: ListView.builder(
-                  itemCount: recommItems.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(35.r),
-                        ),
-                        child: Stack(
-                          children: [
-                            Image.asset(recommItems[index]['imagePath']),
-                            Positioned.fill(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    '\$' +
-                                        recommItems[index]['price'].toString(),
-                                    textAlign: TextAlign.right,
-                                    style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontSize: 8.sp,
-                                      backgroundColor: AppColors.green,
-                                      color: Colors.white,
-                                    ),
+                        SizedBox(height: responsiveHeight(context, 10)),
+                        CustomTitle(text: 'Top Rated'),
+                        SizedBox(height: responsiveHeight(context, 10)),
+                        SizedBox(
+                          height: responsiveHeight(context, 200),
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: List.generate(
+                                foodItems.length,
+                                (index) => Padding(
+                                  padding: EdgeInsets.only(right: 10.w),
+                                  child: FoodCard(
+                                    image: foodItems[index]['image'],
+                                    title: foodItems[index]['title'],
+                                    description:
+                                        foodItems[index]['description'],
+                                    rating: foodItems[index]['rating'],
+                                    price: foodItems[index]['price'],
                                   ),
                                 ),
                               ),
                             ),
-                          ],
+                          ),
                         ),
-                      ),
+                        SizedBox(height: responsiveHeight(context, 5)),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: responsiveWidth(context, 8),
+                          ),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Recommend',
+                                style: TextStyle(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Spacer(),
+                              InkWell(
+                                onTap: () {
+                                  //TODO
+                                },
+                                child: Text(
+                                  'View All',
+                                  style: TextStyle(
+                                    color: AppColors.green,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.keyboard_arrow_right,
+                                  color: AppColors.green,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: responsiveHeight(context, 109),
+                          child: ListView.builder(
+                            itemCount: recommItems.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(35.r),
+                                  ),
+                                  child: Stack(
+                                    children: [
+                                      Image.asset(
+                                        recommItems[index]['imagePath'],
+                                      ),
+                                      Positioned.fill(
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                              20,
+                                            ),
+                                          ),
+                                          child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                              '\$' +
+                                                  recommItems[index]['price']
+                                                      .toString(),
+                                              textAlign: TextAlign.right,
+                                              style: TextStyle(
+                                                fontFamily: 'Inter',
+                                                fontSize: 8.sp,
+                                                backgroundColor:
+                                                    AppColors.green,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
                     );
-                  },
-                ),
+                  } else if (category == 'Burger') {
+                    return Column(children: [Text('Burger')]);
+                  }
+                  return Container();
+                },
               ),
             ],
           ),
