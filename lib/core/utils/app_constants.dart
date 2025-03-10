@@ -17,6 +17,13 @@ class AppConstant {
   static const String locationArrow = '${iconsPath}current_location.svg';
   static const String notificationEmpty = '${iconsPath}notification_empty.svg';
   static const String searchIcon = '${iconsPath}search_icon.svg';
+
+  static const String favIcon = '${iconsPath}favorites.svg';
+  static const String historyIcon = '${iconsPath}history.svg';
+  static const String buyIcon = '${iconsPath}but.svg';
+  static const String profileIcon = '${iconsPath}profile.svg';
+  static const String homeIcon = '${iconsPath}home.svg';
+
   //PNG
   static const String burgerIconPathPG = '${iconsPath}burger.png';
   static const String hotDogIconPathPG = '${iconsPath}hotdog.png';

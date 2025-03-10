@@ -91,6 +91,10 @@ flutter:
         - asset: assets/fonts/Inter.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
-  #
+    - family: AveriaSerifLibre
+      fonts:
+        - asset: assets/fonts/AveriaSerifLibre-Bold.ttf
+        - asset: assets/fonts/AveriaSerifLibre-Light.ttf
+        - asset: assets/fonts/AveriaSerifLibre-Regular.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

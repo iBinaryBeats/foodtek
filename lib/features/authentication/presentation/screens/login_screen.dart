@@ -11,6 +11,8 @@ import 'package:foodtek/features/authentication/presentation/screens/forget_pass
 import 'package:foodtek/features/dashboard/presentation/screens/home_screen.dart';
 import 'package:foodtek/features/widgets/custom/custom_button.dart';
 
+import '../../../dashboard/presentation/screens/custom_navigation_bar_screen.dart';
+
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
   final _formKey = GlobalKey<FormState>();
@@ -167,7 +169,10 @@ class LoginScreen extends StatelessWidget {
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => HomeScreen(),
+                                      builder:
+                                          (context) => NavigationBarScreen(
+                                            initialPage: 0,
+                                          ),
                                     ),
                                   );
                                 },
