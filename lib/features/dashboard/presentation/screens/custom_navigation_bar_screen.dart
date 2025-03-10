@@ -41,10 +41,10 @@ class _NavigationBarPageState extends State<NavigationBarScreen> {
       floatingActionButton: Container(
         decoration: BoxDecoration(
           color: Color(0xffDBF4D1),
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(40),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(1.0),
+          padding: const EdgeInsets.all(4.0),
           child: FloatingActionButton(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50),

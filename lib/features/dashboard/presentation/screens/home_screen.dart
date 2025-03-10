@@ -62,8 +62,8 @@ class HomeScreen extends StatelessWidget {
     {'imagePath': 'assets/images/item4.png', 'price': 8.20},
     {'imagePath': 'assets/images/item4.png', 'price': 8.20},
   ];
-
-  int isTapped = 0;
+  String selectedCategory = "";
+  final ValueNotifier<int> isTapped = ValueNotifier<int>(0);
   final PageController _pageController = PageController();
   final ValueNotifier<int> _currentPageOffer = ValueNotifier<int>(0);
 
@@ -157,67 +157,82 @@ class HomeScreen extends StatelessWidget {
               SizedBox(height: responsiveHeight(context, 10)),
               SizedBox(
                 height: responsiveHeight(context, 50),
-                child: ListView.builder(
-                  itemCount: categories.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: responsiveWidth(context, 15),
-                      ),
-                      child: GestureDetector(
-                        onTap: () {
-                          isTapped = index;
-                          print('debugging :{$index} ');
-                          //TODO: smth
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color:
-                                isTapped == index
-                                    ? AppColors.green
-                                    : Colors.white,
-                            border: Border.all(
-                              color:
-                                  isTapped == index
-                                      ? AppColors.green
-                                      : AppColors.lightGreen,
+                child: ValueListenableBuilder<int>(
+                  valueListenable: isTapped,
+                  builder: (context, value, child) {
+                    return SizedBox(
+                      height: responsiveHeight(context, 50),
+                      child: ListView.builder(
+                        itemCount: categories.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: responsiveWidth(context, 15),
                             ),
-                            borderRadius: BorderRadius.circular(7.r),
-                          ),
-                          child: Row(
-                            children: [
-                              SizedBox(width: responsiveWidth(context, 15)),
-
-                              if (categories[index]['icon'] != '')
-                                Image.asset(
-                                  categories[index]['icon']!,
-                                  fit: BoxFit.contain,
-                                ),
-
-                              SizedBox(width: responsiveWidth(context, 15)),
-                              Text(
-                                categories[index]['title']!,
-                                style: TextStyle(
-                                  fontSize: 12.sp,
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w700,
+                            child: GestureDetector(
+                              onTap: () {
+                                isTapped.value = index;
+                                selectedCategory = categories[index]['title']!;
+                                print('debugging :${isTapped.value} ');
+                                print(selectedCategory);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
                                   color:
-                                      isTapped == index
-                                          ? Colors.white
-                                          : Colors.black,
+                                      value == index
+                                          ? AppColors.green
+                                          : Colors.white,
+                                  border: Border.all(
+                                    color:
+                                        value == index
+                                            ? AppColors.green
+                                            : AppColors.lightGreen,
+                                  ),
+                                  borderRadius: BorderRadius.circular(7.r),
+                                ),
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      width: responsiveWidth(context, 15),
+                                    ),
+                                    if (categories[index]['icon'] != '')
+                                      Image.asset(
+                                        categories[index]['icon']!,
+                                        fit: BoxFit.contain,
+                                      ),
+                                    SizedBox(
+                                      width: responsiveWidth(context, 15),
+                                    ),
+                                    Text(
+                                      categories[index]['title']!,
+                                      style: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontFamily: 'Poppins',
+                                        fontWeight: FontWeight.w700,
+                                        color:
+                                            value == index
+                                                ? Colors.white
+                                                : Colors.black,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: responsiveWidth(context, 15),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              SizedBox(width: responsiveWidth(context, 15)),
-                            ],
-                          ),
-                        ),
+                            ),
+                          );
+                        },
                       ),
                     );
                   },
                 ),
               ),
+
               SizedBox(height: responsiveHeight(context, 5)),
+
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: responsiveWidth(context, 16),
