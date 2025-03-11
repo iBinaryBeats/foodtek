@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodtek/core/utils/app_constants.dart';
 import 'package:foodtek/core/utils/responsive.dart';
+import 'package:foodtek/features/dashboard/presentation/widgets/category_card.dart';
 import 'package:foodtek/features/dashboard/presentation/widgets/dashboard_dots.dart';
 import 'package:foodtek/features/dashboard/presentation/widgets/dashboard_title.dart';
 
@@ -44,6 +45,27 @@ class HomeScreen extends StatelessWidget {
     },
     {
       "image": "assets/icons/cheese_burger.png",
+      "title": "Cheese Burger",
+      "description": "100 gr meat + onion + tomato + Lettuce cheese",
+      "rating": 4.5,
+      "price": 15.35,
+    },
+    {
+      "image": "assets/icons/cheese_burger.png",
+      "title": "Cheese Burger",
+      "description": "100 gr meat + onion + tomato + Lettuce cheese",
+      "rating": 4.5,
+      "price": 15.35,
+    },
+    {
+      "image": "assets/icons/cheese_burger.png",
+      "title": "Cheese Burger",
+      "description": "100 gr meat + onion + tomato + Lettuce cheese",
+      "rating": 4.5,
+      "price": 15.35,
+    },
+    {
+      "image": "assets/icons/cheese_burger.png",
       "title": "Pepperoni Pizza",
       "description": "Mozzarella cheese + pepperoni + tomato sauce",
       "rating": 4.8,
@@ -66,7 +88,7 @@ class HomeScreen extends StatelessWidget {
   final PageController _pageController = PageController();
   final ValueNotifier<int> _currentPageOffer = ValueNotifier<int>(0);
   final ValueNotifier<String> selectedCategory = ValueNotifier<String>(
-    '',
+    'All',
   ); // Use ValueNotifier
 
   @override
@@ -153,12 +175,12 @@ class HomeScreen extends StatelessWidget {
               ),
               SizedBox(height: responsiveHeight(context, 10)),
               SizedBox(
-                height: responsiveHeight(context, 50),
+                height: responsiveHeight(context, 35),
                 child: ValueListenableBuilder<int>(
                   valueListenable: isTapped,
                   builder: (context, value, child) {
                     return SizedBox(
-                      height: responsiveHeight(context, 50),
+                      height: responsiveHeight(context, 25),
                       child: ListView.builder(
                         itemCount: categories.length,
                         scrollDirection: Axis.horizontal,
@@ -383,10 +405,41 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ],
                     );
+                  } else if (category == 'Pizza') {
+                    return Column(children: [Text('Pizza')]);
+                  } else if (category == 'Sandwich') {
+                    return Container();
                   } else if (category == 'Burger') {
-                    return Column(children: [Text('Burger')]);
+                    return Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: responsiveWidth(context, 8),
+                        vertical: responsiveHeight(context, 10),
+                      ),
+                      child: GridView.builder(
+                        shrinkWrap: true, // Allows GridView to size itself
+                        physics:
+                            NeverScrollableScrollPhysics(), // Prevents nested scrolling issues
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2, // Two items per row
+                          crossAxisSpacing: 12.w,
+                          mainAxisSpacing: 50.h,
+                          childAspectRatio:
+                              0.75, // Adjust aspect ratio if needed
+                        ),
+                        itemCount: foodItems.length, // Shows ALL items
+                        itemBuilder: (context, index) {
+                          return CategoryCard(
+                            image: foodItems[index]['image'],
+                            title: foodItems[index]['title'],
+                            description: foodItems[index]['description'],
+                            price: foodItems[index]['price'],
+                          );
+                        },
+                      ),
+                    );
+                  } else {
+                    return Container();
                   }
-                  return Container();
                 },
               ),
             ],
