@@ -6,6 +6,7 @@ import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/features/dashboard/presentation/widgets/category_card.dart';
 import 'package:foodtek/features/dashboard/presentation/widgets/dashboard_dots.dart';
 import 'package:foodtek/features/dashboard/presentation/widgets/dashboard_title.dart';
+import 'package:foodtek/features/widgets/bottomsheet/notification_bottom_sheet.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../widgets/food_card.dart';
@@ -145,9 +146,19 @@ class HomeScreen extends StatelessWidget {
                   height: responsiveHeight(context, 34),
                   width: responsiveWidth(context, 34),
                   decoration: BoxDecoration(color: AppColors.lightGrey),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SvgPicture.asset(AppConstant.notificationEmpty),
+                  child: IconButton(
+                    onPressed: () {
+                      //TODO:BottomSheet
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (context) {
+                          return NotificationBottomSheet(
+                            title: 'Notifications',
+                          );
+                        },
+                      );
+                    },
+                    icon: SvgPicture.asset(AppConstant.notificationEmpty),
                   ),
                 ),
               ),
