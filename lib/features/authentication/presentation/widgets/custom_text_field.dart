@@ -8,6 +8,7 @@ class CustomTextField extends StatelessWidget {
   final bool obsecureText;
   final TextInputType keyboardType;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
 
   const CustomTextField({
     Key? key,
@@ -16,6 +17,7 @@ class CustomTextField extends StatelessWidget {
     this.obsecureText = false,
     this.keyboardType = TextInputType.text,
     this.suffixIcon,
+    this.prefixIcon,
   }) : super(key: key);
 
   @override
@@ -25,13 +27,15 @@ class CustomTextField extends StatelessWidget {
       height: responsiveHeight(context, 46),
       child: TextField(
         controller: controller,
+
         obscureText: obsecureText,
         keyboardType: keyboardType,
         decoration: InputDecoration(
           floatingLabelBehavior: FloatingLabelBehavior.always,
+
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
           labelText: label,
-
+          prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,
         ),
       ),

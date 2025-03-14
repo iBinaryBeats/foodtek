@@ -1,3 +1,4 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -118,6 +119,11 @@ class SignUp extends StatelessWidget {
                         SizedBox(height: responsiveHeight(context, 24)),
 
                         CustomTextField(
+                          prefixIcon: CountryCodePicker(
+                            onChanged: print,
+                            initialSelection: 'JO',
+                            favorite: ['962', 'JO'],
+                          ),
                           label: 'Phone Number',
                           keyboardType: TextInputType.phone,
 
