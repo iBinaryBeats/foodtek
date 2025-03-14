@@ -18,6 +18,7 @@ class SignUp extends StatelessWidget {
   final TextEditingController birthDateController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -44,116 +45,150 @@ class SignUp extends StatelessWidget {
                       horizontal: responsiveWidth(context, 24),
                       vertical: responsiveHeight(context, 10),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            IconButton(
-                              onPressed: () => Navigator.pop(context),
-                              icon: SvgPicture.asset(AppConstant.iconBackPath),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: responsiveHeight(context, 24)),
-                        Text(
-                          'Sign Up',
-                          style: TextStyle(
-                            fontSize: 32.sp,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SizedBox(height: responsiveHeight(context, 9)),
-                        Row(
-                          children: [
-                            Text(
-                              'Already have an account?',
-                              style: TextStyle(
-                                color: AppColors.textColorGrey,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => LoginScreen(),
-                                  ),
-                                );
-                              },
-                              child: Text(
-                                'Login',
-                                style: TextStyle(
-                                  color: AppColors.green,
-                                  fontWeight: FontWeight.w600,
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              IconButton(
+                                onPressed: () => Navigator.pop(context),
+                                icon: SvgPicture.asset(
+                                  AppConstant.iconBackPath,
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: responsiveHeight(context, 24)),
-                        //Buttons implements here
-                        CustomTextField(
-                          label: 'Full Name',
-                          controller: fullNameController,
-                        ),
-                        SizedBox(height: responsiveHeight(context, 24)),
-                        CustomTextField(
-                          label: 'Email',
-                          controller: emailController,
-                        ),
-                        SizedBox(height: responsiveHeight(context, 24)),
-
-                        CustomTextField(
-                          label: 'Birth of Date',
-                          controller: birthDateController,
-                          keyboardType: TextInputType.datetime,
-                          suffixIcon: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: SvgPicture.asset(
-                              AppConstant.iconCalendarPath,
+                            ],
+                          ),
+                          SizedBox(height: responsiveHeight(context, 24)),
+                          Text(
+                            'Sign Up',
+                            style: TextStyle(
+                              fontSize: 32.sp,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
-                        ),
-                        SizedBox(height: responsiveHeight(context, 24)),
-
-                        CustomTextField(
-                          prefixIcon: CountryCodePicker(
-                            onChanged: print,
-                            initialSelection: 'JO',
-                            favorite: ['962', 'JO'],
+                          SizedBox(height: responsiveHeight(context, 9)),
+                          Row(
+                            children: [
+                              Text(
+                                'Already have an account?',
+                                style: TextStyle(
+                                  color: AppColors.textColorGrey,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => LoginScreen(),
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  'Login',
+                                  style: TextStyle(
+                                    color: AppColors.green,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                          label: 'Phone Number',
-                          keyboardType: TextInputType.phone,
+                          SizedBox(height: responsiveHeight(context, 24)),
+                          //Buttons implements here
+                          CustomTextField(
+                            label: 'Full Name',
+                            validator: (value) {
+                              if (value == null || value == '') {
+                                return 'Your Name Cannot Be Empty ';
+                              } else if (value.length < 5) {
+                                return 'Enter your full name ';
+                              }
+                              return null;
+                            },
+                            controller: fullNameController,
+                          ),
+                          SizedBox(height: responsiveHeight(context, 24)),
+                          CustomTextField(
+                            label: 'Email',
+                            validator: (value) {
+                              if (value == null || value == '') {
+                                return 'Email cannot be empty ';
+                              }
+                              return null;
+                            },
+                            controller: emailController,
+                          ),
+                          SizedBox(height: responsiveHeight(context, 24)),
 
-                          controller: phoneController,
-                        ),
-                        SizedBox(height: responsiveHeight(context, 23)),
+                          CustomTextField(
+                            label: 'Birth of Date',
+                            controller: birthDateController,
+                            validator: (value) {
+                              if (value == null || value == '') {
+                                return 'Your Birth of date cannot be empty';
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.datetime,
+                            suffixIcon: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: SvgPicture.asset(
+                                AppConstant.iconCalendarPath,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: responsiveHeight(context, 24)),
 
-                        CustomTextField(
-                          label: 'Set Password',
-                          obsecureText: true,
-                          controller: passwordController,
-                          suffixIcon: IconButton(
+                          CustomTextField(
+                            prefixIcon: CountryCodePicker(
+                              onChanged: print,
+                              initialSelection: 'JO',
+                              favorite: ['962', 'JO'],
+                            ),
+                            label: 'Phone Number',
+                            keyboardType: TextInputType.phone,
+
+                            controller: phoneController,
+                          ),
+                          SizedBox(height: responsiveHeight(context, 23)),
+
+                          CustomTextField(
+                            label: 'Set Password',
+                            obsecureText: true,
+                            validator: (value) {
+                              if (value == null || value == '') {
+                                return 'Password Cannot be empty';
+                              } else if (value.length < 8) {
+                                return 'Your Password must be at least 8 Letters';
+                              }
+                              return null;
+                            },
+                            controller: passwordController,
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                //TODO
+                              },
+                              icon: SvgPicture.asset(AppConstant.iconEyeOff),
+                            ),
+                          ),
+
+                          SizedBox(height: responsiveHeight(context, 30)),
+
+                          CustomButton(
+                            text: 'Register',
+                            textColor: Colors.white,
                             onPressed: () {
+                              if (_formKey.currentState!.validate()) {}
                               //TODO
                             },
-                            icon: SvgPicture.asset(AppConstant.iconEyeOff),
+                            buttonColor: AppColors.green,
                           ),
-                        ),
-
-                        SizedBox(height: responsiveHeight(context, 30)),
-
-                        CustomButton(
-                          text: 'Register',
-                          textColor: Colors.white,
-                          onPressed: () {
-                            //TODO
-                          },
-                          buttonColor: AppColors.green,
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
