@@ -11,6 +11,7 @@ class CustomFormField extends StatelessWidget {
   final bool obscureText;
   final String? hintText;
   final int? maxLines;
+
   //final FormFieldValidator<String>? validator;
   final void Function(String)? onChanged;
 

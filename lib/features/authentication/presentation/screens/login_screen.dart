@@ -109,6 +109,7 @@ class LoginScreen extends StatelessWidget {
                                 label: 'Email',
                                 hintText: 'Email',
                                 // validator: (value) {
+
                                 //   if (value == null || value == '') {
                                 //     return 'Email cannot be empty ';
                                 //   }
@@ -121,6 +122,7 @@ class LoginScreen extends StatelessWidget {
                                 label: 'Password',
                                 hintText: 'Password',
                                 // validator: (value) {
+
                                 //   if (value == null || value == '') {
                                 //     return 'Password Cannot be empty';
                                 //   } else if (value.length < 8) {

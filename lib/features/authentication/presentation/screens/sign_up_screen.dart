@@ -160,6 +160,7 @@ class SignUp extends StatelessWidget {
                             label: 'Set Password',
                             obsecureText: true,
                             // validator: (value) {
+
                             //   if (value == null || value == '') {
                             //     return 'Password Cannot be empty';
                             //   } else if (value.length < 8) {

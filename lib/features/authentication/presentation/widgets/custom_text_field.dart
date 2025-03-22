@@ -8,6 +8,7 @@ class CustomTextField extends StatelessWidget {
   final bool obsecureText;
   final TextInputType keyboardType;
   final Widget? suffixIcon;
+
   final Widget? prefixIcon;
   final FormFieldValidator<String>? validator;
 
