@@ -15,7 +15,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   late final AnimationController controller = AnimationController(
-    duration: const Duration(milliseconds: 2400),
+    duration: const Duration(milliseconds: 1500),
     vsync: this,
   );
   late final Animation<double> animation = CurvedAnimation(
