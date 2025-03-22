@@ -27,7 +27,15 @@ class _SplashScreenState extends State<SplashScreen>
     Future.delayed(Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => OnBoarding()),
+        PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) => OnBoarding(),
+          transitionDuration: Duration(seconds: 1),
+          transitionsBuilder:
+              (context, animation, secondaryAnimation, child) =>
+                  FadeTransition(opacity: animation, child: child),
+        ),
+
+        //    MaterialPageRoute(builder: (context) => OnBoarding()),
       );
     });
   }
