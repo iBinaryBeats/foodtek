@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:foodtek/core/utils/app_colors.dart';
 import 'package:foodtek/core/utils/app_constants.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/features/onboarding/domain/entities/on_boarding_card.dart';
 import 'package:foodtek/features/onboarding/presentation/screens/choose_location_screen.dart';
 import 'package:foodtek/features/onboarding/presentation/widgets/on_boarding_content.dart';
-
 import '../widgets/on_boarding_dots.dart';
 
-class OnBoarding extends StatefulWidget {
-  const OnBoarding({super.key});
+class OnBoarding extends StatelessWidget {
+  OnBoarding({super.key});
 
-  @override
-  State<OnBoarding> createState() => _OnBoardingState();
-}
-
-class _OnBoardingState extends State<OnBoarding> {
   final PageController _pageViewController = PageController();
+  final ValueNotifier<int> currentPageNotifier = ValueNotifier<int>(0);
+
   final List<OnBoardingCard> onBoardingCards = [
     OnBoardingCard(
       imagePath: 'assets/icons/on_boarding_first.svg',
@@ -39,7 +34,28 @@ class _OnBoardingState extends State<OnBoarding> {
     ),
   ];
 
-  int _currentPage = 0;
+  void _goToLocationScreen(BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      PageRouteBuilder(
+        pageBuilder:
+            (context, animation, secondaryAnimation) => ChooseLocationScreen(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          const begin = Offset(1.0, 0.0);
+          const end = Offset.zero;
+          const curve = Curves.easeInOut;
+
+          var tween = Tween(
+            begin: begin,
+            end: end,
+          ).chain(CurveTween(curve: curve));
+          var offsetAnimation = animation.drive(tween);
+
+          return SlideTransition(position: offsetAnimation, child: child);
+        },
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,26 +65,13 @@ class _OnBoardingState extends State<OnBoarding> {
       appBar: AppBar(backgroundColor: Colors.transparent),
       body: Stack(
         children: [
-          // Background Image - takes full screen
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: Container(
-              child: SvgPicture.asset(
-                AppConstant.patternPath,
-                fit: BoxFit.cover,
-                width: double.infinity,
-                height: double.infinity,
-              ),
-            ),
+          Positioned.fill(
+            child: SvgPicture.asset(AppConstant.patternPath, fit: BoxFit.cover),
           ),
           Positioned.fill(
             child: Column(
               children: [
                 SizedBox(height: responsiveHeight(context, 150)),
-                // Container with shadow effect
                 Container(
                   margin: EdgeInsets.symmetric(
                     horizontal: responsiveWidth(context, 16),
@@ -93,55 +96,20 @@ class _OnBoardingState extends State<OnBoarding> {
                           controller: _pageViewController,
                           itemCount: onBoardingCards.length,
                           onPageChanged: (index) {
-                            setState(() {
-                              _currentPage = index;
-                            });
+                            currentPageNotifier.value = index;
                           },
                           itemBuilder: (context, index) {
                             return OnBoardingContent(
                               card: onBoardingCards[index],
                               onContinue: () {
-                                if (onBoardingCards.length - 1 ==
-                                    _currentPage) {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder:
-                                          (
-                                            context,
-                                            animation,
-                                            secondaryAnimation,
-                                          ) => ChooseLocationScreen(),
-                                      transitionsBuilder: (
-                                        context,
-                                        animation,
-                                        secondaryAnimation,
-                                        child,
-                                      ) {
-                                        const begin = Offset(1.0, 0.0);
-                                        const end = Offset.zero;
-                                        const curve = Curves.easeInOut;
-
-                                        var tween = Tween(
-                                          begin: begin,
-                                          end: end,
-                                        ).chain(CurveTween(curve: curve));
-                                        var offsetAnimation = animation.drive(
-                                          tween,
-                                        );
-
-                                        return SlideTransition(
-                                          position: offsetAnimation,
-                                          child: child,
-                                        );
-                                      },
-                                    ),
+                                if (index == onBoardingCards.length - 1) {
+                                  _goToLocationScreen(context);
+                                } else {
+                                  _pageViewController.nextPage(
+                                    duration: Duration(milliseconds: 200),
+                                    curve: Curves.fastOutSlowIn,
                                   );
                                 }
-                                _pageViewController.nextPage(
-                                  duration: Duration(milliseconds: 200),
-                                  curve: Curves.fastOutSlowIn,
-                                );
                               },
                             );
                           },
@@ -152,110 +120,45 @@ class _OnBoardingState extends State<OnBoarding> {
                         padding: EdgeInsets.symmetric(
                           horizontal: responsiveWidth(context, 8),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  PageRouteBuilder(
-                                    pageBuilder:
-                                        (
-                                          context,
-                                          animation,
-                                          secondaryAnimation,
-                                        ) => ChooseLocationScreen(),
-                                    transitionsBuilder: (
-                                      context,
-                                      animation,
-                                      secondaryAnimation,
-                                      child,
-                                    ) {
-                                      const begin = Offset(1.0, 0.0);
-                                      const end = Offset.zero;
-                                      const curve = Curves.easeInOut;
-
-                                      var tween = Tween(
-                                        begin: begin,
-                                        end: end,
-                                      ).chain(CurveTween(curve: curve));
-                                      var offsetAnimation = animation.drive(
-                                        tween,
-                                      );
-
-                                      return SlideTransition(
-                                        position: offsetAnimation,
-                                        child: child,
-                                      );
-                                    },
+                        child: ValueListenableBuilder<int>(
+                          valueListenable: currentPageNotifier,
+                          builder:
+                              (context, currentPage, child) => Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  TextButton(
+                                    onPressed:
+                                        () => _goToLocationScreen(context),
+                                    child: Text('Skip'),
                                   ),
-                                );
-                              },
-                              child: Text('Skip'),
-                            ),
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                ...List.generate(
-                                  onBoardingCards.length,
-                                  (index) => OnBoardingDot(
-                                    isActive: index == _currentPage,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                _pageViewController.nextPage(
-                                  duration: Duration(milliseconds: 200),
-                                  curve: Curves.linear,
-                                );
-
-                                if (onBoardingCards.length - 1 ==
-                                    _currentPage) {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder:
-                                          (
-                                            context,
-                                            animation,
-                                            secondaryAnimation,
-                                          ) => ChooseLocationScreen(),
-                                      transitionsBuilder: (
-                                        context,
-                                        animation,
-                                        secondaryAnimation,
-                                        child,
-                                      ) {
-                                        const begin = Offset(1.0, 0.0);
-                                        const end = Offset.zero;
-                                        const curve = Curves.easeInOut;
-
-                                        var tween = Tween(
-                                          begin: begin,
-                                          end: end,
-                                        ).chain(CurveTween(curve: curve));
-                                        var offsetAnimation = animation.drive(
-                                          tween,
-                                        );
-
-                                        return SlideTransition(
-                                          position: offsetAnimation,
-                                          child: child,
-                                        );
-                                      },
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: List.generate(
+                                      onBoardingCards.length,
+                                      (index) => OnBoardingDot(
+                                        isActive: index == currentPage,
+                                      ),
                                     ),
-                                  );
-                                }
-                              },
-                              icon: SvgPicture.asset(
-                                'assets/icons/arrow_icon_button.svg',
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      if (currentPage ==
+                                          onBoardingCards.length - 1) {
+                                        _goToLocationScreen(context);
+                                      } else {
+                                        _pageViewController.nextPage(
+                                          duration: Duration(milliseconds: 200),
+                                          curve: Curves.linear,
+                                        );
+                                      }
+                                    },
+                                    icon: SvgPicture.asset(
+                                      'assets/icons/arrow_icon_button.svg',
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
                         ),
                       ),
                     ],
