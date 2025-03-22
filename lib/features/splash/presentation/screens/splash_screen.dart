@@ -12,7 +12,17 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController controller = AnimationController(
+    duration: const Duration(milliseconds: 2400),
+    vsync: this,
+  );
+  late final Animation<double> animation = CurvedAnimation(
+    parent: controller,
+    curve: Curves.easeIn,
+  );
+
   void _navigateTo() {
     Future.delayed(Duration(seconds: 3), () {
       Navigator.pushReplacement(
@@ -25,11 +35,13 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    controller.forward(); // If you plan to animate something
     _navigateTo();
   }
 
   @override
   void dispose() {
+    controller.dispose();
     super.dispose();
   }
 
@@ -40,7 +52,12 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Stack(
         children: [
           SvgPicture.asset(AppConstant.patternPath),
-          Center(child: SvgPicture.asset(AppConstant.logoPath)),
+          Center(
+            child: FadeTransition(
+              opacity: animation,
+              child: SvgPicture.asset(AppConstant.logoPath),
+            ),
+          ),
         ],
       ),
     );

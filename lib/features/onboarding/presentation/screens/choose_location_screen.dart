@@ -69,6 +69,7 @@ class ChooseLocationScreen extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => LoginScreen()),
                 );
               },
+
               child: Text(
                 'Cancel',
                 style: TextStyle(
