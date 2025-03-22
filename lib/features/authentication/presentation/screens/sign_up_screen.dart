@@ -101,25 +101,25 @@ class SignUp extends StatelessWidget {
                           //Buttons implements here
                           CustomTextField(
                             label: 'Full Name',
-                            validator: (value) {
-                              if (value == null || value == '') {
-                                return 'Your Name Cannot Be Empty ';
-                              } else if (value.length < 5) {
-                                return 'Enter your full name ';
-                              }
-                              return null;
-                            },
+                            // validator: (value) {
+                            //   if (value == null || value == '') {
+                            //     return 'Your Name Cannot Be Empty ';
+                            //   } else if (value.length < 5) {
+                            //     return 'Enter your full name ';
+                            //   }
+                            //   return null;
+                            // },
                             controller: fullNameController,
                           ),
                           SizedBox(height: responsiveHeight(context, 24)),
                           CustomTextField(
                             label: 'Email',
-                            validator: (value) {
-                              if (value == null || value == '') {
-                                return 'Email cannot be empty ';
-                              }
-                              return null;
-                            },
+                            // validator: (value) {
+                            //   if (value == null || value == '') {
+                            //     return 'Email cannot be empty ';
+                            //   }
+                            //   return null;
+                            // },
                             controller: emailController,
                           ),
                           SizedBox(height: responsiveHeight(context, 24)),
@@ -127,12 +127,12 @@ class SignUp extends StatelessWidget {
                           CustomTextField(
                             label: 'Birth of Date',
                             controller: birthDateController,
-                            validator: (value) {
-                              if (value == null || value == '') {
-                                return 'Your Birth of date cannot be empty';
-                              }
-                              return null;
-                            },
+                            // validator: (value) {
+                            //   if (value == null || value == '') {
+                            //     return 'Your Birth of date cannot be empty';
+                            //   }
+                            //   return null;
+                            // },
                             keyboardType: TextInputType.datetime,
                             suffixIcon: Padding(
                               padding: const EdgeInsets.all(16.0),
@@ -159,14 +159,14 @@ class SignUp extends StatelessWidget {
                           CustomTextField(
                             label: 'Set Password',
                             obsecureText: true,
-                            validator: (value) {
-                              if (value == null || value == '') {
-                                return 'Password Cannot be empty';
-                              } else if (value.length < 8) {
-                                return 'Your Password must be at least 8 Letters';
-                              }
-                              return null;
-                            },
+                            // validator: (value) {
+                            //   if (value == null || value == '') {
+                            //     return 'Password Cannot be empty';
+                            //   } else if (value.length < 8) {
+                            //     return 'Your Password must be at least 8 Letters';
+                            //   }
+                            //   return null;
+                            // },
                             controller: passwordController,
                             suffixIcon: IconButton(
                               onPressed: () {

@@ -24,7 +24,7 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: responsiveWidth(context, 295),
       height: responsiveHeight(context, 46),
       child: TextFormField(

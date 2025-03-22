@@ -11,7 +11,7 @@ class CustomFormField extends StatelessWidget {
   final bool obscureText;
   final String? hintText;
   final int? maxLines;
-  final FormFieldValidator<String>? validator;
+  //final FormFieldValidator<String>? validator;
   final void Function(String)? onChanged;
 
   const CustomFormField({
@@ -22,7 +22,7 @@ class CustomFormField extends StatelessWidget {
     this.obscureText = false,
     this.hintText,
     this.maxLines = 1,
-    this.validator,
+    // this.validator,
     this.onChanged,
   });
 
@@ -43,13 +43,12 @@ class CustomFormField extends StatelessWidget {
         SizedBox(height: responsiveHeight(context, 2)),
         Container(
           width: responsiveWidth(context, 295),
-          height: responsiveHeight(context, 46),
           child: TextFormField(
             controller: controller,
             keyboardType: keyboardType,
             obscureText: obscureText,
             maxLines: maxLines,
-            validator: validator,
+            //  validator: validator,
             onChanged: onChanged,
             decoration: InputDecoration(
               floatingLabelBehavior: FloatingLabelBehavior.auto,

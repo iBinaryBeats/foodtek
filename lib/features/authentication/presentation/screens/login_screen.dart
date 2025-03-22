@@ -108,26 +108,26 @@ class LoginScreen extends StatelessWidget {
                               CustomFormField(
                                 label: 'Email',
                                 hintText: 'Email',
-                                validator: (value) {
-                                  if (value == null || value == '') {
-                                    return 'Email cannot be empty ';
-                                  }
-                                  return null;
-                                },
+                                // validator: (value) {
+                                //   if (value == null || value == '') {
+                                //     return 'Email cannot be empty ';
+                                //   }
+                                //   return null;
+                                // },
                               ),
                               SizedBox(height: responsiveHeight(context, 12)),
 
                               CustomFormField(
                                 label: 'Password',
                                 hintText: 'Password',
-                                validator: (value) {
-                                  if (value == null || value == '') {
-                                    return 'Password Cannot be empty';
-                                  } else if (value.length < 8) {
-                                    return 'Password must be at least 8 characters long';
-                                  }
-                                  return null;
-                                },
+                                // validator: (value) {
+                                //   if (value == null || value == '') {
+                                //     return 'Password Cannot be empty';
+                                //   } else if (value.length < 8) {
+                                //     return 'Password must be at least 8 characters long';
+                                //   }
+                                //   return null;
+                                // },
                                 obscureText: true,
                               ),
                               SizedBox(height: responsiveHeight(context, 12)),
