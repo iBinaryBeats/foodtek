@@ -4,6 +4,7 @@ import '../../../../core/utils/responsive.dart';
 
 class CustomTextField extends StatefulWidget {
   final TextEditingController controller;
+  final int? statusOfTitle;
   final String label;
   final bool obscureText;
   final String? errorText;
@@ -17,6 +18,7 @@ class CustomTextField extends StatefulWidget {
 
   const CustomTextField({
     super.key,
+    this.statusOfTitle,
     required this.controller,
     required this.obscureText,
     this.prefixIcon,
@@ -49,7 +51,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          widget.title ?? widget.label,
+          widget.statusOfTitle == null ? (widget.title ?? widget.label) : '',
           style: TextStyle(fontWeight: widget.fontWeight),
         ),
         SizedBox(

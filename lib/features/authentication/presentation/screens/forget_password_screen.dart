@@ -7,6 +7,7 @@ import 'package:foodtek/features/widgets/custom/custom_button.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_constants.dart';
+import '../widgets/custom_text_field.dart';
 
 class ForgetPassword extends StatelessWidget {
   ForgetPassword({super.key});
@@ -101,14 +102,11 @@ class ForgetPassword extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: responsiveHeight(context, 24)),
-                        TextFormField(
+                        CustomTextField(
+                          statusOfTitle: 1,
+                          obscureText: false,
                           controller: emailController,
-                          decoration: InputDecoration(
-                            labelText: 'Email',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
+                          label: 'Email',
                         ),
                         SizedBox(height: responsiveHeight(context, 24)),
 
