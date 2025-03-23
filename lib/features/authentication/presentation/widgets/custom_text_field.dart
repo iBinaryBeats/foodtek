@@ -53,6 +53,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           style: TextStyle(fontWeight: widget.fontWeight),
         ),
         SizedBox(
+          width: responsiveWidth(context, 295),
           height: responsiveHeight(context, 46),
 
           child: TextField(
@@ -78,15 +79,15 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       : widget.suffixIcon,
               hintText: widget.hintText,
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(color: Colors.grey),
               ),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(color: Colors.grey),
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(color: Colors.grey, width: 2),
               ),
               errorText: widget.errorText,

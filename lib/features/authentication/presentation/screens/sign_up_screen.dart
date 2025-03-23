@@ -99,26 +99,12 @@ class SignUp extends StatelessWidget {
                             obscureText: false,
                             label: 'Full Name',
                             controller: fullNameController,
-
-                            // validator: (value) {
-                            //   if (value == null || value == '') {
-                            //     return 'Your Name Cannot Be Empty ';
-                            //   } else if (value.length < 5) {
-                            //     return 'Enter your full name ';
-                            //   }
-                            //   return null;
-                            // },
                           ),
                           SizedBox(height: responsiveHeight(context, 8)),
                           CustomTextField(
                             obscureText: false,
                             label: 'Email',
-                            // validator: (value) {
-                            //   if (value == null || value == '') {
-                            //     return 'Email cannot be empty ';
-                            //   }
-                            //   return null;
-                            // },
+
                             controller: emailController,
                           ),
                           SizedBox(height: responsiveHeight(context, 8)),
@@ -127,15 +113,8 @@ class SignUp extends StatelessWidget {
                             obscureText: false,
                             label: 'Birth of Date',
                             controller: birthDateController,
-                            //   obsecureText: false,
-
-                            // validator: (value) {
-                            //   if (value == null || value == '') {
-                            //     return 'Your Birth of date cannot be empty';
-                            //   }
-                            //   return null;
-                            // },
                             keyboardType: TextInputType.datetime,
+
                             suffixIcon: Padding(
                               padding: const EdgeInsets.all(16.0),
                               child: SvgPicture.asset(
@@ -162,15 +141,7 @@ class SignUp extends StatelessWidget {
                           CustomTextField(
                             label: 'Set Password',
                             obscureText: true,
-                            // validator: (value) {
 
-                            //   if (value == null || value == '') {
-                            //     return 'Password Cannot be empty';
-                            //   } else if (value.length < 8) {
-                            //     return 'Your Password must be at least 8 Letters';
-                            //   }
-                            //   return null;
-                            // },
                             controller: passwordController,
                             suffixIcon: IconButton(
                               onPressed: () {

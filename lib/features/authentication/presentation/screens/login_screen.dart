@@ -12,11 +12,15 @@ import 'package:foodtek/features/widgets/custom/custom_button.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_constants.dart';
 import '../../../dashboard/presentation/screens/custom_navigation_bar_screen.dart';
+import '../widgets/custom_text_field.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passController = new TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
-  bool isChecked = false;
+  ValueNotifier<bool> isChecked = ValueNotifier<bool>(false);
 
   @override
   Widget build(BuildContext context) {
@@ -105,9 +109,10 @@ class LoginScreen extends StatelessWidget {
                               ),
                               SizedBox(height: responsiveHeight(context, 12)),
 
-                              CustomFormField(
+                              CustomTextField(
+                                controller: emailController,
+                                obscureText: false,
                                 label: 'Email',
-                                hintText: 'Email',
                                 // validator: (value) {
 
                                 //   if (value == null || value == '') {
@@ -118,28 +123,33 @@ class LoginScreen extends StatelessWidget {
                               ),
                               SizedBox(height: responsiveHeight(context, 12)),
 
-                              CustomFormField(
+                              CustomTextField(
+                                controller: passController,
+                                obscureText: true,
                                 label: 'Password',
-                                hintText: 'Password',
                                 // validator: (value) {
 
                                 //   if (value == null || value == '') {
-                                //     return 'Password Cannot be empty';
-                                //   } else if (value.length < 8) {
-                                //     return 'Password must be at least 8 characters long';
+                                //     return 'Email cannot be empty ';
                                 //   }
                                 //   return null;
                                 // },
-                                obscureText: true,
                               ),
                               SizedBox(height: responsiveHeight(context, 12)),
 
                               Row(
                                 children: [
-                                  Checkbox(
-                                    value: isChecked,
-                                    activeColor: AppColors.green,
-                                    onChanged: (bool? value) {},
+                                  ValueListenableBuilder(
+                                    valueListenable: isChecked,
+                                    builder: (context, value, child) {
+                                      return Checkbox(
+                                        value: isChecked.value,
+                                        activeColor: AppColors.green,
+                                        onChanged: (bool? value) {
+                                          isChecked.value = !isChecked.value;
+                                        },
+                                      );
+                                    },
                                   ),
                                   Text(
                                     'Remember me',
