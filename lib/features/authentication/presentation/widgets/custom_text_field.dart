@@ -70,6 +70,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   widget.obscureText
                       ? IconButton(
                         icon: Icon(
+                          size: 16,
                           _isObscured ? Icons.visibility_off : Icons.visibility,
                         ),
                         onPressed: () {

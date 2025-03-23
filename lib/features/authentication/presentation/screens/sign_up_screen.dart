@@ -141,14 +141,7 @@ class SignUp extends StatelessWidget {
                           CustomTextField(
                             label: 'Set Password',
                             obscureText: true,
-
                             controller: passwordController,
-                            suffixIcon: IconButton(
-                              onPressed: () {
-                                //TODO
-                              },
-                              icon: SvgPicture.asset(AppConstant.iconEyeOff),
-                            ),
                           ),
 
                           SizedBox(height: responsiveHeight(context, 30)),
