@@ -2,8 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:foodtek/core/utils/app_colors.dart';
-import 'package:foodtek/core/utils/app_constants.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/features/Authentication/presentation/screens/sign_up_screen.dart';
 import 'package:foodtek/features/Authentication/presentation/widgets/custom_form_field.dart';
@@ -11,6 +9,8 @@ import 'package:foodtek/features/authentication/presentation/screens/forget_pass
 import 'package:foodtek/features/dashboard/presentation/screens/home_screen.dart';
 import 'package:foodtek/features/widgets/custom/custom_button.dart';
 
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/app_constants.dart';
 import '../../../dashboard/presentation/screens/custom_navigation_bar_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -139,10 +139,7 @@ class LoginScreen extends StatelessWidget {
                                   Checkbox(
                                     value: isChecked,
                                     activeColor: AppColors.green,
-                                    onChanged: (bool? value) {
-                                      // State change cannot be done here, as this is now a StatelessWidget.
-                                      // You may need to lift this state up to a parent widget or use another state management solution.
-                                    },
+                                    onChanged: (bool? value) {},
                                   ),
                                   Text(
                                     'Remember me',

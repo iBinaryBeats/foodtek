@@ -60,7 +60,6 @@ class SignUp extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SizedBox(height: responsiveHeight(context, 24)),
                           Text(
                             'Sign Up',
                             style: TextStyle(
@@ -68,7 +67,6 @@ class SignUp extends StatelessWidget {
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          SizedBox(height: responsiveHeight(context, 9)),
                           Row(
                             children: [
                               Text(
@@ -97,10 +95,11 @@ class SignUp extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SizedBox(height: responsiveHeight(context, 24)),
-                          //Buttons implements here
                           CustomTextField(
+                            obscureText: false,
                             label: 'Full Name',
+                            controller: fullNameController,
+
                             // validator: (value) {
                             //   if (value == null || value == '') {
                             //     return 'Your Name Cannot Be Empty ';
@@ -109,10 +108,10 @@ class SignUp extends StatelessWidget {
                             //   }
                             //   return null;
                             // },
-                            controller: fullNameController,
                           ),
-                          SizedBox(height: responsiveHeight(context, 24)),
+                          SizedBox(height: responsiveHeight(context, 8)),
                           CustomTextField(
+                            obscureText: false,
                             label: 'Email',
                             // validator: (value) {
                             //   if (value == null || value == '') {
@@ -122,11 +121,14 @@ class SignUp extends StatelessWidget {
                             // },
                             controller: emailController,
                           ),
-                          SizedBox(height: responsiveHeight(context, 24)),
+                          SizedBox(height: responsiveHeight(context, 8)),
 
                           CustomTextField(
+                            obscureText: false,
                             label: 'Birth of Date',
                             controller: birthDateController,
+                            //   obsecureText: false,
+
                             // validator: (value) {
                             //   if (value == null || value == '') {
                             //     return 'Your Birth of date cannot be empty';
@@ -141,9 +143,10 @@ class SignUp extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(height: responsiveHeight(context, 24)),
+                          SizedBox(height: responsiveHeight(context, 8)),
 
                           CustomTextField(
+                            obscureText: false,
                             prefixIcon: CountryCodePicker(
                               onChanged: print,
                               initialSelection: 'JO',
@@ -154,11 +157,11 @@ class SignUp extends StatelessWidget {
 
                             controller: phoneController,
                           ),
-                          SizedBox(height: responsiveHeight(context, 23)),
+                          SizedBox(height: responsiveHeight(context, 8)),
 
                           CustomTextField(
                             label: 'Set Password',
-                            obsecureText: true,
+                            obscureText: true,
                             // validator: (value) {
 
                             //   if (value == null || value == '') {
