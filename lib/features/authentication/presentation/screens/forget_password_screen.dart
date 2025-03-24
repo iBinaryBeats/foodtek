@@ -13,8 +13,7 @@ class ForgetPassword extends StatelessWidget {
   ForgetPassword({super.key});
 
   final TextEditingController emailController = TextEditingController();
-  TextEditingController verifyNumber = TextEditingController();
-
+  ValueNotifier<bool> isCorrect = ValueNotifier<bool>(true);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,13 +113,8 @@ class ForgetPassword extends StatelessWidget {
                           text: 'Send',
                           textColor: Colors.white,
                           onPressed: () {
-                            /*  Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => RestPassword(),
-                              ),
-                            );*/
-
+                            TextEditingController verifyNumber =
+                                TextEditingController();
                             showDialog(
                               barrierDismissible:
                                   false, //user cannot interact outside the screen
@@ -178,31 +172,52 @@ class ForgetPassword extends StatelessWidget {
                                               padding: const EdgeInsets.all(
                                                 8.0,
                                               ),
-                                              child: PinCodeTextField(
-                                                controller: verifyNumber,
-                                                pinTheme: PinTheme(
-                                                  inactiveColor:
-                                                      Colors.grey[300],
-                                                  fieldHeight: responsiveHeight(
-                                                    context,
-                                                    50,
-                                                  ),
-                                                  fieldWidth: responsiveHeight(
-                                                    context,
-                                                    50,
-                                                  ),
-                                                  shape: PinCodeFieldShape.box,
-                                                  borderRadius:
-                                                      BorderRadius.circular(12),
-                                                ),
+                                              child: ValueListenableBuilder<
+                                                bool
+                                              >(
+                                                valueListenable: isCorrect,
+                                                builder: (
+                                                  context,
+                                                  value,
+                                                  child,
+                                                ) {
+                                                  return PinCodeTextField(
+                                                    controller: verifyNumber,
+                                                    pinTheme: PinTheme(
+                                                      inactiveColor:
+                                                          Colors.grey[300],
+                                                      activeColor:
+                                                          isCorrect.value
+                                                              ? AppColors.green
+                                                              : Colors.red,
 
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                appContext: context,
-                                                length: 4,
+                                                      fieldHeight:
+                                                          responsiveHeight(
+                                                            context,
+                                                            50,
+                                                          ),
+                                                      fieldWidth:
+                                                          responsiveHeight(
+                                                            context,
+                                                            50,
+                                                          ),
+                                                      shape:
+                                                          PinCodeFieldShape.box,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                            12,
+                                                          ),
+                                                    ),
 
-                                                onChanged: (value) {
-                                                  //TODO:LOGIC
+                                                    keyboardType:
+                                                        TextInputType.number,
+                                                    appContext: context,
+                                                    length: 4,
+
+                                                    onChanged: (value) {
+                                                      //TODO:LOGIC
+                                                    },
+                                                  );
                                                 },
                                               ),
                                             ),
@@ -229,6 +244,8 @@ class ForgetPassword extends StatelessWidget {
                                                               RestPassword(),
                                                     ),
                                                   );
+                                                } else {
+                                                  isCorrect.value = false;
                                                 }
                                               },
                                               buttonColor: AppColors.green,

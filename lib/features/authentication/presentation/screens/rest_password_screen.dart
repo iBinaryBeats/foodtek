@@ -5,6 +5,7 @@ import 'package:foodtek/core/utils/app_colors.dart';
 import 'package:foodtek/core/utils/app_constants.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/features/Authentication/presentation/screens/login_screen.dart';
+import 'package:foodtek/features/Authentication/presentation/widgets/custom_text_field.dart';
 import 'package:foodtek/features/widgets/custom/custom_button.dart';
 
 class RestPassword extends StatelessWidget {
@@ -30,7 +31,7 @@ class RestPassword extends StatelessWidget {
                   SvgPicture.asset(AppConstant.logoPath),
                   SizedBox(height: responsiveHeight(context, 46)),
                   Container(
-                    width: responsiveWidth(context, 365),
+                    width: responsiveWidth(context, 355),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12),
@@ -90,105 +91,69 @@ class RestPassword extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Form(
-                            key: _formKey,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                _buildLabel('New Password'),
-                                TextFormField(
-                                  controller: _passwordController,
-                                  obscureText: true,
-                                  obscuringCharacter: "*",
-                                  decoration: _inputDecoration(
-                                    "Enter new password",
-                                  ),
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Please enter a password';
-                                    }
-                                    if (value.length < 8) {
-                                      return 'Password must be at least 8 characters';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                SizedBox(height: responsiveHeight(context, 16)),
-                                _buildLabel('Confirm new Password'),
-                                SizedBox(height: responsiveHeight(context, 16)),
-
-                                TextFormField(
-                                  controller: _confirmPasswordController,
-                                  obscureText: true,
-                                  obscuringCharacter: "*",
-                                  decoration: _inputDecoration(
-                                    "Confirm new password",
-                                  ),
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Please confirm your password';
-                                    }
-                                    if (value != _passwordController.text) {
-                                      return 'Passwords do not match';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                SizedBox(height: responsiveHeight(context, 24)),
-                                CustomButton(
-                                  text: 'Update Password',
-                                  textColor: Colors.white,
-                                  onPressed: () {
-                                    if (_formKey.currentState!.validate()) {
-                                      showDialog(
-                                        context: context,
-                                        barrierDismissible:
-                                            false, // Prevent closing manually
-                                        builder: (context) {
-                                          return Dialog(
-                                            backgroundColor: Colors.transparent,
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                SvgPicture.asset(
-                                                  AppConstant
-                                                      .congratsPassChangedPath,
-                                                ),
-                                                SizedBox(
-                                                  height: responsiveHeight(
-                                                    context,
-                                                    20,
-                                                  ),
-                                                ),
-                                                SvgPicture.asset(
-                                                  AppConstant
-                                                      .congratsMessagePath,
-                                                ),
-                                              ],
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              CustomTextField(
+                                label: 'New Password',
+                                controller: _passwordController,
+                                obscureText: true,
+                              ),
+                              SizedBox(height: responsiveHeight(context, 16)),
+                              CustomTextField(
+                                label: ' Confirm New Password',
+                                controller: _confirmPasswordController,
+                                obscureText: true,
+                              ),
+                              SizedBox(height: responsiveHeight(context, 24)),
+                              CustomButton(
+                                text: 'Update Password',
+                                textColor: Colors.white,
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    barrierDismissible:
+                                        false, // Prevent closing manually
+                                    builder: (context) {
+                                      return Dialog(
+                                        backgroundColor: Colors.transparent,
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            SvgPicture.asset(
+                                              AppConstant
+                                                  .congratsPassChangedPath,
                                             ),
-                                          );
-                                        },
+                                            SizedBox(
+                                              height: responsiveHeight(
+                                                context,
+                                                20,
+                                              ),
+                                            ),
+                                            SvgPicture.asset(
+                                              AppConstant.congratsMessagePath,
+                                            ),
+                                          ],
+                                        ),
                                       );
+                                    },
+                                  );
 
-                                      // Wait for 2 seconds, then navigate to LoginScreen
-                                      Future.delayed(Duration(seconds: 2), () {
-                                        Navigator.pop(
-                                          context,
-                                        ); // Close the dialog
-                                        Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => LoginScreen(),
-                                          ),
-                                        );
-                                      });
-                                    }
-                                  },
+                                  // Wait for 2 seconds, then navigate to LoginScreen
+                                  Future.delayed(Duration(seconds: 2), () {
+                                    Navigator.pop(context); // Close the dialog
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => LoginScreen(),
+                                      ),
+                                    );
+                                  });
+                                },
 
-                                  buttonColor: AppColors.green,
-                                ),
-                              ],
-                            ),
+                                buttonColor: AppColors.green,
+                              ),
+                            ],
                           ),
                         ],
                       ),

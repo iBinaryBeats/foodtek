@@ -30,9 +30,9 @@ class SignUp extends StatelessWidget {
           Positioned.fill(
             child: Column(
               children: [
-                SizedBox(height: responsiveHeight(context, 74)),
+                SizedBox(height: responsiveHeight(context, 65)),
                 SvgPicture.asset(AppConstant.logoPath),
-                SizedBox(height: responsiveHeight(context, 42)),
+                SizedBox(height: responsiveHeight(context, 55)),
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -126,10 +126,33 @@ class SignUp extends StatelessWidget {
 
                           CustomTextField(
                             obscureText: false,
-                            prefixIcon: CountryCodePicker(
-                              onChanged: print,
-                              initialSelection: 'JO',
-                              favorite: ['962', 'JO'],
+                            prefixIcon: Container(
+                              width: 125,
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  right: BorderSide(
+                                    color: Colors.grey,
+                                    width: 1,
+                                  ),
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  CountryCodePicker(
+                                    showCountryOnly: true,
+                                    showOnlyCountryWhenClosed: true,
+                                    showDropDownButton: true,
+                                    showFlag: true,
+                                    showFlagDialog: true,
+                                    hideMainText: true,
+                                    padding: EdgeInsets.zero,
+                                    onChanged: print,
+                                    initialSelection: 'JO',
+                                    favorite: ['962', 'JO'],
+                                  ),
+                                ],
+                              ),
                             ),
                             label: 'Phone Number',
                             keyboardType: TextInputType.phone,
