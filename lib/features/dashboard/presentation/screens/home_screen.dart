@@ -148,8 +148,8 @@ class HomeScreen extends StatelessWidget {
                   decoration: BoxDecoration(color: AppColors.lightGrey),
                   child: IconButton(
                     onPressed: () {
-                      //TODO:BottomSheet
                       showModalBottomSheet(
+                        isScrollControlled: true,
                         context: context,
                         builder: (context) {
                           return NotificationBottomSheet(
