@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodtek/core/utils/app_constants.dart';
 import 'package:foodtek/features/dashboard/presentation/screens/favorites_screen.dart';
+import 'package:foodtek/features/dashboard/presentation/screens/history_screen.dart';
 import 'package:foodtek/features/dashboard/presentation/screens/home_screen.dart';
 import 'package:foodtek/features/dashboard/presentation/screens/profile_screen.dart';
 
@@ -32,7 +33,8 @@ class _NavigationBarPageState extends State<NavigationBarScreen> {
       HomeScreen(),
       FavoritesScreen(),
       ProfileScreen(),
-      ProfileScreen(),
+
+      HistoryScreen(),
       ProfileScreen(),
     ];
 
