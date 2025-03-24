@@ -10,6 +10,7 @@ class CategoryCard extends StatelessWidget {
   final String title;
   final String description;
   final double price;
+  final bool isFavourite;
 
   const CategoryCard({
     super.key,
@@ -17,6 +18,7 @@ class CategoryCard extends StatelessWidget {
     required this.title,
     required this.description,
     required this.price,
+    required this.isFavourite,
   });
 
   @override
@@ -54,7 +56,10 @@ class CategoryCard extends StatelessWidget {
               onPressed: () {
                 //TODO
               },
-              icon: Icon(Icons.favorite_border),
+              icon: Icon(
+                isFavourite ? Icons.favorite : Icons.favorite_border,
+                color: isFavourite ? Colors.red : Colors.black,
+              ),
             ),
           ),
         ),

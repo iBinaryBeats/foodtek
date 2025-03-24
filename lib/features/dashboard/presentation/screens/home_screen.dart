@@ -10,6 +10,7 @@ import 'package:foodtek/features/widgets/bottomsheet/notification_bottom_sheet.d
 
 import '../../../../core/utils/app_colors.dart';
 import '../widgets/food_card.dart';
+import '../widgets/food_grid_view.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -36,6 +37,7 @@ class HomeScreen extends StatelessWidget {
       "description": "100 gr chicken + tomato + cheese Lettuce",
       "rating": 3.5,
       "price": 20.80,
+      "isFavourite": true,
     },
     {
       "image": "assets/icons/cheese_burger.png",
@@ -43,6 +45,7 @@ class HomeScreen extends StatelessWidget {
       "description": "100 gr meat + onion + tomato + Lettuce cheese",
       "rating": 4.5,
       "price": 15.35,
+      "isFavourite": false,
     },
     {
       "image": "assets/icons/cheese_burger.png",
@@ -50,6 +53,7 @@ class HomeScreen extends StatelessWidget {
       "description": "100 gr meat + onion + tomato + Lettuce cheese",
       "rating": 4.5,
       "price": 15.35,
+      "isFavourite": false,
     },
     {
       "image": "assets/icons/cheese_burger.png",
@@ -57,6 +61,7 @@ class HomeScreen extends StatelessWidget {
       "description": "100 gr meat + onion + tomato + Lettuce cheese",
       "rating": 4.5,
       "price": 15.35,
+      "isFavourite": false,
     },
     {
       "image": "assets/icons/cheese_burger.png",
@@ -64,6 +69,7 @@ class HomeScreen extends StatelessWidget {
       "description": "100 gr meat + onion + tomato + Lettuce cheese",
       "rating": 4.5,
       "price": 15.35,
+      "isFavourite": false,
     },
     {
       "image": "assets/icons/cheese_burger.png",
@@ -71,6 +77,7 @@ class HomeScreen extends StatelessWidget {
       "description": "Mozzarella cheese + pepperoni + tomato sauce",
       "rating": 4.8,
       "price": 25.00,
+      "isFavourite": false,
     },
   ];
 
@@ -417,37 +424,11 @@ class HomeScreen extends StatelessWidget {
                       ],
                     );
                   } else if (category == 'Pizza') {
-                    return Column(children: [Text('Pizza')]);
+                    return FoodGridView(foodItems: foodItems);
                   } else if (category == 'Sandwich') {
-                    return Container();
+                    return FoodGridView(foodItems: foodItems);
                   } else if (category == 'Burger') {
-                    return Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: responsiveWidth(context, 8),
-                        vertical: responsiveHeight(context, 10),
-                      ),
-                      child: GridView.builder(
-                        shrinkWrap: true, // Allows GridView to size itself
-                        physics:
-                            NeverScrollableScrollPhysics(), // Prevents nested scrolling issues
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2, // Two items per row
-                          crossAxisSpacing: 12.w,
-                          mainAxisSpacing: 50.h,
-                          childAspectRatio:
-                              0.75, // Adjust aspect ratio if needed
-                        ),
-                        itemCount: foodItems.length, // Shows ALL items
-                        itemBuilder: (context, index) {
-                          return CategoryCard(
-                            image: foodItems[index]['image'],
-                            title: foodItems[index]['title'],
-                            description: foodItems[index]['description'],
-                            price: foodItems[index]['price'],
-                          );
-                        },
-                      ),
-                    );
+                    return FoodGridView(foodItems: foodItems);
                   } else {
                     return Container();
                   }
