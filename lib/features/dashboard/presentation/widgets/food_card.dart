@@ -67,12 +67,10 @@ class FoodCard extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 5.h),
-              Expanded(
-                child: Text(
-                  description,
-                  maxLines: 2,
-                  style: TextStyle(fontSize: 6.sp, color: Colors.grey),
-                ),
+              Text(
+                description,
+                maxLines: 2,
+                style: TextStyle(fontSize: 6.sp, color: Colors.grey),
               ),
               SizedBox(height: responsiveHeight(context, 1)),
               Row(

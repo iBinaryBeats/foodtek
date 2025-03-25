@@ -2,11 +2,14 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:foodtek/core/utils/helper/validator.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/features/Authentication/presentation/screens/sign_up_screen.dart';
 import 'package:foodtek/features/Authentication/presentation/widgets/custom_form_field.dart';
 import 'package:foodtek/features/authentication/presentation/screens/forget_password_screen.dart';
 import 'package:foodtek/features/dashboard/presentation/screens/home_screen.dart';
+import 'package:foodtek/features/widgets/bottomsheet/default_bottom_sheet.dart';
+import 'package:foodtek/features/widgets/bottomsheet/errors_bottom_sheet.dart';
 import 'package:foodtek/features/widgets/custom/custom_button.dart';
 
 import '../../../../core/utils/app_colors.dart';
@@ -189,7 +192,22 @@ class LoginScreen extends StatelessWidget {
                                 textColor: Colors.white,
                                 buttonColor: AppColors.green,
                                 onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
+                                  List<String> userInputValidator = [];
+                                  String? cathIssue = Validator.validateEmail(
+                                    emailController.text.trim(),
+                                  );
+                                  if (cathIssue != null) {
+                                    userInputValidator.add(cathIssue);
+                                  }
+
+                                  cathIssue = Validator.validatePassword(
+                                    passController.text.trim(),
+                                  );
+                                  if (cathIssue != null) {
+                                    userInputValidator.add(cathIssue);
+                                  }
+
+                                  if (userInputValidator.isEmpty) {
                                     Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
@@ -198,6 +216,20 @@ class LoginScreen extends StatelessWidget {
                                               initialPage: 0,
                                             ),
                                       ),
+                                    );
+                                  } else {
+                                    showModalBottomSheet(
+                                      context: context,
+                                      builder:
+                                          (context) => ErrorsBottomSheet(
+                                            buttonColor: Colors.red,
+                                            title: 'Something Went Wrong ',
+                                            message: userInputValidator.join(
+                                              '\n',
+                                            ),
+                                            iconPath: AppConstant.wrongIcon,
+                                            onTap: () => Navigator.pop(context),
+                                          ),
                                     );
                                   }
                                 },

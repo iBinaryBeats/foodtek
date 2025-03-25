@@ -8,6 +8,9 @@ import 'package:foodtek/features/Authentication/presentation/screens/login_scree
 import 'package:foodtek/features/Authentication/presentation/widgets/custom_text_field.dart';
 import 'package:foodtek/features/widgets/custom/custom_button.dart';
 
+import '../../../../core/utils/helper/validator.dart';
+import '../../../widgets/bottomsheet/errors_bottom_sheet.dart';
+
 class RestPassword extends StatelessWidget {
   RestPassword({super.key});
 
@@ -110,45 +113,83 @@ class RestPassword extends StatelessWidget {
                                 text: 'Update Password',
                                 textColor: Colors.white,
                                 onPressed: () {
-                                  showDialog(
-                                    context: context,
-                                    barrierDismissible:
-                                        false, // Prevent closing manually
-                                    builder: (context) {
-                                      return Dialog(
-                                        backgroundColor: Colors.transparent,
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            SvgPicture.asset(
-                                              AppConstant
-                                                  .congratsPassChangedPath,
+                                  List<String> userInputValidator = [];
+                                  String? cathIssue =
+                                      Validator.validatePassword(
+                                        _passwordController.text.trim(),
+                                      );
+                                  if (cathIssue != null) {
+                                    userInputValidator.add(cathIssue);
+                                  }
+
+                                  cathIssue =
+                                      Validator.validatePasswordWithConfirmation(
+                                        password:
+                                            _passwordController.text.trim(),
+                                        confirmPassword:
+                                            _confirmPasswordController.text
+                                                .trim(),
+                                      );
+                                  if (cathIssue != null) {
+                                    userInputValidator.add(cathIssue);
+                                  }
+                                  if (userInputValidator.isNotEmpty) {
+                                    showModalBottomSheet(
+                                      context: context,
+                                      builder:
+                                          (context) => ErrorsBottomSheet(
+                                            buttonColor: Colors.red,
+                                            title: 'Something Went Wrong ',
+                                            message: userInputValidator.join(
+                                              '\n',
                                             ),
-                                            SizedBox(
-                                              height: responsiveHeight(
-                                                context,
-                                                20,
+                                            iconPath: AppConstant.wrongIcon,
+                                            onTap: () => Navigator.pop(context),
+                                          ),
+                                    );
+                                  } else {
+                                    showDialog(
+                                      context: context,
+                                      barrierDismissible:
+                                          false, // Prevent closing manually
+                                      builder: (context) {
+                                        return Dialog(
+                                          backgroundColor: Colors.transparent,
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              SvgPicture.asset(
+                                                AppConstant
+                                                    .congratsPassChangedPath,
                                               ),
-                                            ),
-                                            SvgPicture.asset(
-                                              AppConstant.congratsMessagePath,
-                                            ),
-                                          ],
+                                              SizedBox(
+                                                height: responsiveHeight(
+                                                  context,
+                                                  20,
+                                                ),
+                                              ),
+                                              SvgPicture.asset(
+                                                AppConstant.congratsMessagePath,
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    );
+
+                                    // Wait for 2 seconds, then navigate to LoginScreen
+                                    Future.delayed(Duration(seconds: 2), () {
+                                      Navigator.pop(
+                                        context,
+                                      ); // Close the dialog
+                                      Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => LoginScreen(),
                                         ),
                                       );
-                                    },
-                                  );
-
-                                  // Wait for 2 seconds, then navigate to LoginScreen
-                                  Future.delayed(Duration(seconds: 2), () {
-                                    Navigator.pop(context); // Close the dialog
-                                    Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => LoginScreen(),
-                                      ),
-                                    );
-                                  });
+                                    });
+                                  }
                                 },
 
                                 buttonColor: AppColors.green,

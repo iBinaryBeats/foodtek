@@ -12,7 +12,7 @@ class CustomFormField extends StatelessWidget {
   final String? hintText;
   final int? maxLines;
 
-  //final FormFieldValidator<String>? validator;
+  final FormFieldValidator<String>? validator;
   final void Function(String)? onChanged;
 
   const CustomFormField({
@@ -23,7 +23,7 @@ class CustomFormField extends StatelessWidget {
     this.obscureText = false,
     this.hintText,
     this.maxLines = 1,
-    // this.validator,
+    this.validator,
     this.onChanged,
   });
 

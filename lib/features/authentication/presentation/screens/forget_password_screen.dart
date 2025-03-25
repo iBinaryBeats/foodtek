@@ -7,6 +7,8 @@ import 'package:foodtek/features/widgets/custom/custom_button.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_constants.dart';
+import '../../../../core/utils/helper/validator.dart';
+import '../../../widgets/bottomsheet/errors_bottom_sheet.dart';
 import '../widgets/custom_text_field.dart';
 
 class ForgetPassword extends StatelessWidget {
@@ -113,152 +115,176 @@ class ForgetPassword extends StatelessWidget {
                           text: 'Send',
                           textColor: Colors.white,
                           onPressed: () {
-                            TextEditingController verifyNumber =
-                                TextEditingController();
-                            showDialog(
-                              barrierDismissible:
-                                  false, //user cannot interact outside the screen
-                              context: context,
-                              builder: (context) {
-                                return Dialog(
-                                  backgroundColor: Colors.transparent,
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      //        horizontal: responsiveWidth(context, 25),
-                                      //       vertical: responsiveHeight(context, 90),
-                                    ),
-                                    child: Container(
-                                      width: responsiveWidth(context, 343),
-                                      height: responsiveHeight(context, 525),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(12),
+                            List<String> userInputValidator = [];
+                            String? cathIssue = Validator.validateEmail(
+                              emailController.text.trim(),
+                            );
+                            if (cathIssue != null) {
+                              userInputValidator.add(cathIssue);
+                            }
+
+                            if (userInputValidator.isEmpty) {
+                              TextEditingController verifyNumber =
+                                  TextEditingController();
+                              showDialog(
+                                barrierDismissible:
+                                    false, //user cannot interact outside the screen
+                                context: context,
+                                builder: (context) {
+                                  return Dialog(
+                                    backgroundColor: Colors.transparent,
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        //        horizontal: responsiveWidth(context, 25),
+                                        //       vertical: responsiveHeight(context, 90),
                                       ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Spacer(),
-                                            SvgPicture.asset(
-                                              AppConstant.sentMessagePath,
-                                            ),
-                                            SizedBox(
-                                              height: responsiveHeight(
-                                                context,
-                                                12,
+                                      child: Container(
+                                        width: responsiveWidth(context, 343),
+                                        height: responsiveHeight(context, 525),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Spacer(),
+                                              SvgPicture.asset(
+                                                AppConstant.sentMessagePath,
                                               ),
-                                            ),
-                                            Text(
-                                              'A 4-digit code has been sent to your email.\nPlease enter it to verify.',
-
-                                              textAlign: TextAlign.center,
-
-                                              style: TextStyle(
-                                                fontSize: 12.sp,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: responsiveHeight(
-                                                context,
-                                                24,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.all(
-                                                8.0,
-                                              ),
-                                              child: ValueListenableBuilder<
-                                                bool
-                                              >(
-                                                valueListenable: isCorrect,
-                                                builder: (
+                                              SizedBox(
+                                                height: responsiveHeight(
                                                   context,
-                                                  value,
-                                                  child,
-                                                ) {
-                                                  return PinCodeTextField(
-                                                    controller: verifyNumber,
-                                                    pinTheme: PinTheme(
-                                                      inactiveColor:
-                                                          Colors.grey[300],
-                                                      activeColor:
-                                                          isCorrect.value
-                                                              ? AppColors.green
-                                                              : Colors.red,
-
-                                                      fieldHeight:
-                                                          responsiveHeight(
-                                                            context,
-                                                            50,
-                                                          ),
-                                                      fieldWidth:
-                                                          responsiveHeight(
-                                                            context,
-                                                            50,
-                                                          ),
-                                                      shape:
-                                                          PinCodeFieldShape.box,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                            12,
-                                                          ),
-                                                    ),
-
-                                                    keyboardType:
-                                                        TextInputType.number,
-                                                    appContext: context,
-                                                    length: 4,
-
-                                                    onChanged: (value) {
-                                                      //TODO:LOGIC
-                                                    },
-                                                  );
-                                                },
+                                                  12,
+                                                ),
                                               ),
-                                            ),
-                                            SizedBox(
-                                              height: responsiveHeight(
-                                                context,
-                                                24,
+                                              Text(
+                                                'A 4-digit code has been sent to your email.\nPlease enter it to verify.',
+
+                                                textAlign: TextAlign.center,
+
+                                                style: TextStyle(
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
                                               ),
-                                            ),
-                                            CustomButton(
-                                              text: 'Verify',
-                                              textColor: Colors.white,
-                                              onPressed: () {
-                                                //TODO
-                                                if (verifyNumber.text
-                                                        .toString()
-                                                        .trim() ==
-                                                    '1234') {
-                                                  Navigator.push(
+                                              SizedBox(
+                                                height: responsiveHeight(
+                                                  context,
+                                                  24,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.all(
+                                                  8.0,
+                                                ),
+                                                child: ValueListenableBuilder<
+                                                  bool
+                                                >(
+                                                  valueListenable: isCorrect,
+                                                  builder: (
                                                     context,
-                                                    MaterialPageRoute(
-                                                      builder:
-                                                          (context) =>
-                                                              RestPassword(),
-                                                    ),
-                                                  );
-                                                } else {
-                                                  isCorrect.value = false;
-                                                }
-                                              },
-                                              buttonColor: AppColors.green,
-                                            ),
-                                            Spacer(),
-                                          ],
+                                                    value,
+                                                    child,
+                                                  ) {
+                                                    return PinCodeTextField(
+                                                      controller: verifyNumber,
+
+                                                      pinTheme: PinTheme(
+                                                        inactiveColor:
+                                                            Colors.grey[300],
+                                                        activeColor:
+                                                            isCorrect.value
+                                                                ? AppColors
+                                                                    .green
+                                                                : Colors.red,
+                                                        fieldHeight:
+                                                            responsiveHeight(
+                                                              context,
+                                                              50,
+                                                            ),
+                                                        fieldWidth:
+                                                            responsiveHeight(
+                                                              context,
+                                                              50,
+                                                            ),
+                                                        shape:
+                                                            PinCodeFieldShape
+                                                                .box,
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                              12,
+                                                            ),
+                                                      ),
+
+                                                      keyboardType:
+                                                          TextInputType.number,
+                                                      appContext: context,
+                                                      length: 4,
+
+                                                      onChanged: (value) {},
+                                                    );
+                                                  },
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: responsiveHeight(
+                                                  context,
+                                                  24,
+                                                ),
+                                              ),
+                                              CustomButton(
+                                                text: 'Verify',
+                                                textColor: Colors.white,
+                                                onPressed: () {
+                                                  //TODO
+                                                  if (verifyNumber.text
+                                                          .toString()
+                                                          .trim() ==
+                                                      '1234') {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder:
+                                                            (context) =>
+                                                                RestPassword(),
+                                                      ),
+                                                    );
+                                                  } else {
+                                                    isCorrect.value = false;
+                                                  }
+                                                },
+                                                buttonColor: AppColors.green,
+                                              ),
+                                              Spacer(),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                );
-                              },
-                            );
+                                  );
+                                },
+                              );
+                            } else {
+                              showModalBottomSheet(
+                                context: context,
+                                builder:
+                                    (context) => ErrorsBottomSheet(
+                                      buttonColor: Colors.red,
+                                      title: 'Something Went Wrong ',
+                                      message: userInputValidator.join('\n'),
+                                      iconPath: AppConstant.wrongIcon,
+                                      onTap: () => Navigator.pop(context),
+                                    ),
+                              );
+                            }
                           },
                           buttonColor: AppColors.green,
                         ),

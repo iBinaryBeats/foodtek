@@ -98,5 +98,10 @@ flutter:
         - asset: assets/fonts/AveriaSerifLibre-Bold.ttf
         - asset: assets/fonts/AveriaSerifLibre-Light.ttf
         - asset: assets/fonts/AveriaSerifLibre-Regular.ttf
+
+    - family: Ubuntu
+      fonts:
+        - asset: assets/fonts/Ubuntu-Light.ttf
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

@@ -314,7 +314,7 @@ class HomeScreen extends StatelessWidget {
                         CustomTitle(text: 'Top Rated'),
                         SizedBox(height: responsiveHeight(context, 10)),
                         SizedBox(
-                          height: responsiveHeight(context, 200),
+                          // height: responsiveHeight(context, 200),
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
@@ -372,12 +372,11 @@ class HomeScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: responsiveHeight(context, 109),
-                          child: ListView.builder(
-                            itemCount: recommItems.length,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+
+                          child: Row(
+                            children: List.generate(5, (index) {
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
@@ -418,7 +417,7 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                 ),
                               );
-                            },
+                            }),
                           ),
                         ),
                       ],

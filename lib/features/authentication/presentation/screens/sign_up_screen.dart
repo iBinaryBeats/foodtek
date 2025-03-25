@@ -10,6 +10,11 @@ import 'package:foodtek/features/Authentication/presentation/widgets/custom_form
 import 'package:foodtek/features/Authentication/presentation/widgets/custom_text_field.dart';
 import 'package:foodtek/features/widgets/custom/custom_button.dart';
 
+import '../../../../core/utils/helper/validator.dart';
+import '../../../dashboard/presentation/screens/custom_navigation_bar_screen.dart';
+import '../../../dashboard/presentation/screens/home_screen.dart';
+import '../../../widgets/bottomsheet/errors_bottom_sheet.dart';
+
 class SignUp extends StatelessWidget {
   SignUp({super.key});
 
@@ -32,7 +37,7 @@ class SignUp extends StatelessWidget {
               children: [
                 SizedBox(height: responsiveHeight(context, 65)),
                 SvgPicture.asset(AppConstant.logoPath),
-                SizedBox(height: responsiveHeight(context, 55)),
+                SizedBox(height: responsiveHeight(context, 30)),
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -173,8 +178,68 @@ class SignUp extends StatelessWidget {
                             text: 'Register',
                             textColor: Colors.white,
                             onPressed: () {
-                              if (_formKey.currentState!.validate()) {}
-                              //TODO
+                              List<String> userInputValidator = [];
+
+                              String? cathIssue = Validator.validateUsername(
+                                fullNameController.text.trim(),
+                              );
+                              if (cathIssue != null) {
+                                userInputValidator.add(cathIssue);
+                              }
+                              cathIssue = Validator.validateEmail(
+                                emailController.text.trim(),
+                              );
+
+                              if (cathIssue != null) {
+                                userInputValidator.add(cathIssue);
+                              }
+                              cathIssue = Validator.validateNotEmpty(
+                                fieldName: 'Birth of Date',
+                                birthDateController.text.trim(),
+                              );
+
+                              if (cathIssue != null) {
+                                userInputValidator.add(cathIssue);
+                              }
+
+                              cathIssue = Validator.validatePhone(
+                                phoneController.text.trim(),
+                              );
+
+                              if (cathIssue != null) {
+                                userInputValidator.add(cathIssue);
+                              }
+
+                              cathIssue = Validator.validatePassword(
+                                passwordController.text.trim(),
+                              );
+
+                              if (cathIssue != null) {
+                                userInputValidator.add(cathIssue);
+                              }
+
+                              if (userInputValidator.isEmpty) {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder:
+                                        (context) =>
+                                            NavigationBarScreen(initialPage: 0),
+                                  ),
+                                );
+                              } else {
+                                showModalBottomSheet(
+                                  context: context,
+                                  builder:
+                                      (context) => ErrorsBottomSheet(
+                                        buttonColor: Colors.red,
+                                        title: 'Something Went Wrong ',
+                                        message: userInputValidator.join('\n'),
+                                        iconPath: AppConstant.wrongIcon,
+                                        onTap: () => Navigator.pop(context),
+                                      ),
+                                );
+                              }
                             },
                             buttonColor: AppColors.green,
                           ),

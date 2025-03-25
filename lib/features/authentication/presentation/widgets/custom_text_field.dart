@@ -58,9 +58,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
           width: responsiveWidth(context, 295),
           height: responsiveHeight(context, 46),
 
-          child: TextField(
+          child: TextFormField(
             keyboardType: widget.keyboardType,
             maxLines: widget.maxLines,
+
             obscureText: _isObscured,
             controller: widget.controller,
             decoration: InputDecoration(
@@ -93,6 +94,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(color: Colors.grey, width: 2),
               ),
+              errorStyle: TextStyle(fontSize: 8),
               errorText: widget.errorText,
             ),
           ),
