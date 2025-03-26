@@ -12,10 +12,7 @@ class FoodGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: responsiveWidth(context, 8),
-        vertical: responsiveHeight(context, 10),
-      ),
+      padding: EdgeInsets.symmetric(horizontal: responsiveWidth(context, 8)),
       child: GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),

@@ -30,8 +30,8 @@ class _NavigationBarPageState extends State<NavigationBarScreen> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> pages = [
-      HomeScreen(),
-      FavoritesScreen(),
+      HomeScreen(displayDash: 0),
+      HomeScreen(displayDash: 1),
       ProfileScreen(),
 
       HistoryScreen(),

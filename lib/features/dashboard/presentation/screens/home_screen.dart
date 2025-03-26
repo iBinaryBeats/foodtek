@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodtek/core/utils/app_constants.dart';
 import 'package:foodtek/core/utils/responsive.dart';
+import 'package:foodtek/features/dashboard/presentation/screens/favorites_screen.dart';
+import 'package:foodtek/features/dashboard/presentation/screens/history_screen.dart';
 import 'package:foodtek/features/dashboard/presentation/widgets/category_card.dart';
 import 'package:foodtek/features/dashboard/presentation/widgets/dashboard_dots.dart';
 import 'package:foodtek/features/dashboard/presentation/widgets/dashboard_title.dart';
@@ -14,8 +16,8 @@ import '../widgets/food_card.dart';
 import '../widgets/food_grid_view.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
-
+  HomeScreen({super.key, required this.displayDash});
+  int displayDash = 0;
   List<Map<String, String>> categories = [
     {"icon": '', "title": "All"},
     {"icon": AppConstant.burgerIconPathPG, "title": "Burger"},
@@ -192,17 +194,36 @@ class HomeScreen extends StatelessWidget {
                   child: SvgPicture.asset(AppConstant.searchIcon),
                 ),
               ),
+              if (displayDash == 0)
+                DashboardSection(
+                  selectedIndexNotifier: isTapped,
+                  selectedCategoryNotifier: selectedCategory,
+                  currentPageNotifier: _currentPageOffer,
+                  categories: categories,
+                  offers: offers,
+                  foodItems: foodItems,
+                  recommItems: recommItems,
+                  pageController: _pageController,
+                ),
 
-              DashboardSection(
-                selectedIndexNotifier: isTapped,
-                selectedCategoryNotifier: selectedCategory,
-                currentPageNotifier: _currentPageOffer,
-                categories: categories,
-                offers: offers,
-                foodItems: foodItems,
-                recommItems: recommItems,
-                pageController: _pageController,
-              ),
+              if (displayDash == 1)
+                Column(
+                  children: [
+                    SizedBox(height: responsiveHeight(context, 25)),
+                    Row(
+                      children: [
+                        Text(
+                          'Favorites',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20.sp,
+                          ),
+                        ),
+                      ],
+                    ),
+                    FoodGridView(foodItems: foodItems),
+                  ],
+                ),
             ],
           ),
         ),
