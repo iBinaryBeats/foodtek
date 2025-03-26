@@ -18,6 +18,7 @@ class _SplashScreenState extends State<SplashScreen>
     duration: const Duration(milliseconds: 1500),
     vsync: this,
   );
+
   late final Animation<double> animation = CurvedAnimation(
     parent: controller,
     curve: Curves.easeIn,
@@ -43,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
-    controller.forward(); // If you plan to animate something
+    controller.forward();
     _navigateTo();
   }
 

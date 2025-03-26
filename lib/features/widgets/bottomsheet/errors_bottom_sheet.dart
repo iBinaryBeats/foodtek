@@ -65,6 +65,7 @@ class ErrorsBottomSheet extends StatelessWidget {
               onPressed: () => Navigator.pop(context),
               buttonColor: Color(0xffcc2d35),
             ),
+            SizedBox(height: responsiveHeight(context, 30)),
           ],
         ),
       ),

@@ -205,6 +205,7 @@ class HomeScreen extends StatelessWidget {
                   recommItems: recommItems,
                   pageController: _pageController,
                 ),
+              SizedBox(height: responsiveHeight(context, 20)),
 
               if (displayDash == 1)
                 Column(
