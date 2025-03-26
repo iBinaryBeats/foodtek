@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -144,7 +146,7 @@ class CategorySelector extends StatelessWidget {
   }
 }
 
-class OffersCarousel extends StatelessWidget {
+class OffersCarousel extends StatefulWidget {
   final List<String> offers;
   final PageController pageController;
   final ValueNotifier<int> currentPageNotifier;
@@ -157,21 +159,55 @@ class OffersCarousel extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<OffersCarousel> createState() => _OffersCarouselState();
+}
+
+class _OffersCarouselState extends State<OffersCarousel> {
+  late Timer _timer;
+  @override
+  void initState() {
+    super.initState();
+    _startAutoIncrement();
+  }
+
+  // Function to auto-increment the page view
+  void _startAutoIncrement() {
+    _timer = Timer.periodic(Duration(seconds: 3), (timer) {
+      int nextPage = widget.currentPageNotifier.value + 1;
+      if (nextPage >= widget.offers.length) {
+        nextPage = 0; // Reset to the first page after the last one
+      }
+      widget.pageController.animateToPage(
+        nextPage,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.fastOutSlowIn,
+      );
+      widget.currentPageNotifier.value = nextPage; // Update the current page
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel(); // Cancel the timer when the widget is disposed
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         SizedBox(
           height: responsiveHeight(context, 137),
           child: PageView.builder(
-            controller: pageController,
-            itemCount: offers.length,
-            onPageChanged: (index) => currentPageNotifier.value = index,
+            controller: widget.pageController,
+            itemCount: widget.offers.length,
+            onPageChanged: (index) => widget.currentPageNotifier.value = index,
             itemBuilder: (context, index) {
               return Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: responsiveWidth(context, 5),
                 ),
-                child: Image.asset(offers[index]),
+                child: Image.asset(widget.offers[index]),
               );
             },
           ),
@@ -179,9 +215,9 @@ class OffersCarousel extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: List.generate(
-            offers.length,
+            widget.offers.length,
             (index) => ValueListenableBuilder<int>(
-              valueListenable: currentPageNotifier,
+              valueListenable: widget.currentPageNotifier,
               builder: (context, value, child) {
                 return DashboardDot(isActive: value == index);
               },

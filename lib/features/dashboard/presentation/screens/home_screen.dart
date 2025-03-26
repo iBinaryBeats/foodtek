@@ -222,6 +222,7 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                     FoodGridView(foodItems: foodItems),
+                    SizedBox(height: responsiveHeight(context, 20)),
                   ],
                 ),
             ],
