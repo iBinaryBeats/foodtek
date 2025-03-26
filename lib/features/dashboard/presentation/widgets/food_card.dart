@@ -110,10 +110,13 @@ class FoodCard extends StatelessWidget {
                     ),
                   ),
                   Spacer(),
-                  Icon(
-                    Icons.add_circle_rounded,
+                  IconButton(
+                    onPressed: () {
+                      //TODO
+                    },
+                    icon: Icon(Icons.add_circle_rounded), // Corrected here
                     color: AppColors.green,
-                    size: 18.sp,
+                    iconSize: 18.sp,
                   ),
                 ],
               ),
