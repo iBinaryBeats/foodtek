@@ -45,7 +45,6 @@ class CategoryCard extends StatelessWidget {
         ),
         Positioned(
           top: -9,
-
           right: responsiveWidth(context, 0),
           child: Container(
             decoration: BoxDecoration(
