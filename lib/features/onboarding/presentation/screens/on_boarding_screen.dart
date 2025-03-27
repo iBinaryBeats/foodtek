@@ -130,7 +130,12 @@ class OnBoarding extends StatelessWidget {
                                   TextButton(
                                     onPressed:
                                         () => _goToLocationScreen(context),
-                                    child: Text('Skip'),
+                                    child: Text(
+                                      'Skip',
+                                      style: TextStyle(
+                                        color: Color(0xff455A64),
+                                      ),
+                                    ),
                                   ),
                                   Row(
                                     mainAxisSize: MainAxisSize.min,

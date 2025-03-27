@@ -4,6 +4,7 @@ import 'package:foodtek/core/utils/app_colors.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/features/dashboard/presentation/screens/home_screen.dart';
 import 'package:foodtek/features/dashboard/presentation/screens/order_now.dart';
+import 'package:foodtek/features/dashboard/presentation/widgets/food_item_datails_widget.dart';
 import 'package:foodtek/features/dashboard/presentation/widgets/search_bar_widget.dart';
 
 import '../screens/custom_navigation_bar_screen.dart';
@@ -121,7 +122,15 @@ class FoodCard extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder:
-                              (context) => NavigationBarScreen(initialPage: 2),
+                              (context) => FoodItemDetails(
+                                imageUrl: 'assets/images/order_now',
+                                foodName: 'foodName',
+                                rating: 4,
+                                reviewsCount: 5,
+                                price: 5,
+                                originalPrice: 5,
+                                description: 'description',
+                              ),
                         ),
                       );
                     },

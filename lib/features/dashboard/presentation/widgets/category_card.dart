@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/core/utils/app_constants.dart';
 import 'package:foodtek/core/utils/responsive.dart';
+import 'package:foodtek/features/dashboard/presentation/widgets/food_item_datails_widget.dart';
 import 'package:foodtek/features/widgets/custom/custom_button.dart';
 import '../../../../core/utils/app_colors.dart';
 
@@ -108,7 +109,21 @@ class CategoryCard extends StatelessWidget {
               decoration: BoxDecoration(color: Colors.white),
               child: ElevatedButton(
                 onPressed: () {
-                  //TODO
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder:
+                          (context) => FoodItemDetails(
+                            imageUrl: 'assets/images/order_now',
+                            foodName: 'foodName',
+                            rating: 4,
+                            reviewsCount: 5,
+                            price: 5,
+                            originalPrice: 5,
+                            description: 'description',
+                          ),
+                    ),
+                  );
                 },
                 child: Text('Order Now'),
                 style: ElevatedButton.styleFrom(

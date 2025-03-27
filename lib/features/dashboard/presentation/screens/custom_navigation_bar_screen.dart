@@ -88,7 +88,7 @@ class _NavigationBarPageState extends State<NavigationBarScreen> {
     final List<Widget> pages = [
       HomeScreen(displayDash: 0),
       HomeScreen(displayDash: 1),
-      //HomeScreen(displayDash: 3),
+      HomeScreen(displayDash: 2),
       ProfileScreen(),
     ];
 
@@ -148,18 +148,18 @@ class _NavigationBarPageState extends State<NavigationBarScreen> {
       case 3:
         return ProfileScreen();
 
-      case 5:
-        return FilterWidget(context: context);
-      case 2:
-        return FoodItemDetails(
-          imageUrl: 'assets/images/order_now',
-          foodName: 'foodName',
-          rating: 4,
-          reviewsCount: 5,
-          price: 5,
-          originalPrice: 5,
-          description: 'description',
-        );
+      //case 5:
+      //return FilterWidget(context: context);
+      // case 2:
+      //   return FoodItemDetails(
+      //     imageUrl: 'assets/images/order_now',
+      //     foodName: 'foodName',
+      //     rating: 4,
+      //     reviewsCount: 5,
+      //     price: 5,
+      //     originalPrice: 5,
+      //     description: 'description',
+      //   );
       default:
         return SizedBox();
     }
@@ -200,81 +200,81 @@ class CustomFloatingActionButton extends StatelessWidget {
   }
 }
 
-class FilterWidget extends StatelessWidget {
-  const FilterWidget({super.key, required this.context});
-
-  final BuildContext context;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Text(
-              'Filter',
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 24.sp),
-            ),
-          ],
-        ),
-        SizedBox(height: responsiveHeight(context, 5)),
-        Row(
-          children: [
-            Text('Price Range', style: TextStyle(color: Colors.grey[500])),
-          ],
-        ),
-        SizedBox(height: responsiveHeight(context, 5)),
-
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Min', // Keeps text in place without moving
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green, width: 1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.green,
-                      width: 2,
-                    ), // More emphasis on tap
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(width: responsiveWidth(context, 15)),
-            Expanded(
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Max',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green, width: 1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green, width: 2),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-}
+// class FilterWidget extends StatelessWidget {
+//   const FilterWidget({super.key, required this.context});
+//
+//   final BuildContext context;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         Row(
+//           children: [
+//             Text(
+//               'Filter',
+//               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 24.sp),
+//             ),
+//           ],
+//         ),
+//         SizedBox(height: responsiveHeight(context, 5)),
+//         Row(
+//           children: [
+//             Text('Price Range', style: TextStyle(color: Colors.grey[500])),
+//           ],
+//         ),
+//         SizedBox(height: responsiveHeight(context, 5)),
+//
+//         Row(
+//           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//           children: [
+//             Expanded(
+//               child: TextField(
+//                 decoration: InputDecoration(
+//                   hintText: 'Min', // Keeps text in place without moving
+//                   border: OutlineInputBorder(
+//                     borderRadius: BorderRadius.circular(10),
+//                   ),
+//                   enabledBorder: OutlineInputBorder(
+//                     borderSide: BorderSide(color: Colors.green, width: 1),
+//                     borderRadius: BorderRadius.circular(10),
+//                   ),
+//                   focusedBorder: OutlineInputBorder(
+//                     borderSide: BorderSide(
+//                       color: Colors.green,
+//                       width: 2,
+//                     ), // More emphasis on tap
+//                     borderRadius: BorderRadius.circular(10),
+//                   ),
+//                 ),
+//               ),
+//             ),
+//             SizedBox(width: responsiveWidth(context, 15)),
+//             Expanded(
+//               child: TextField(
+//                 decoration: InputDecoration(
+//                   hintText: 'Max',
+//                   border: OutlineInputBorder(
+//                     borderRadius: BorderRadius.circular(10),
+//                   ),
+//                   enabledBorder: OutlineInputBorder(
+//                     borderSide: BorderSide(color: Colors.green, width: 1),
+//                     borderRadius: BorderRadius.circular(10),
+//                   ),
+//                   focusedBorder: OutlineInputBorder(
+//                     borderSide: BorderSide(color: Colors.green, width: 2),
+//                     borderRadius: BorderRadius.circular(10),
+//                   ),
+//                 ),
+//               ),
+//             ),
+//           ],
+//         ),
+//       ],
+//     );
+//   }
+// }
 
 class CustomNavigationBarScreenItems extends StatefulWidget {
   const CustomNavigationBarScreenItems({

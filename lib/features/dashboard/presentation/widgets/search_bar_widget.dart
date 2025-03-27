@@ -4,6 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_constants.dart';
 import '../../../../core/utils/responsive.dart';
+import '../screens/custom_navigation_bar_screen.dart';
+import 'filter_widget.dart';
 
 class CustomSearchBar extends StatelessWidget {
   final Function()? onSearchIconTap;
@@ -33,68 +35,15 @@ class CustomSearchBar extends StatelessWidget {
         padding: const EdgeInsets.all(12.0),
         child: SvgPicture.asset(AppConstant.searchIcon),
       ),
-      trailing: [IconButton(icon: Icon(Icons.tune), onPressed: () {})],
-    );
-  }
-}
-
-class FilterWidget extends StatelessWidget {
-  const FilterWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          'Filter',
-          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 24.sp),
-        ),
-        SizedBox(height: responsiveHeight(context, 5)),
-        Text('Price Range', style: TextStyle(color: Colors.grey[500])),
-        SizedBox(height: responsiveHeight(context, 5)),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Min',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green, width: 1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green, width: 2),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(width: responsiveWidth(context, 15)),
-            Expanded(
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Max',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green, width: 1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green, width: 2),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-            ),
-          ],
+      trailing: [
+        IconButton(
+          icon: Icon(Icons.tune),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => FilterWidget()),
+            );
+          },
         ),
       ],
     );
