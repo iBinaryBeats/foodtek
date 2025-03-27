@@ -18,9 +18,15 @@ import '../../../../core/utils/app_colors.dart';
 import '../widgets/food_card.dart';
 import '../widgets/food_grid_view.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen({super.key, required this.displayDash});
   int displayDash = 0;
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   List<Map<String, String>> categories = [
     {"icon": '', "title": "All"},
     {"icon": AppConstant.burgerIconPathPG, "title": "Burger"},
@@ -99,13 +105,17 @@ class HomeScreen extends StatelessWidget {
   ];
 
   final ValueNotifier<double> _spicyLevel = ValueNotifier<double>(5.0);
+
   final ValueNotifier<int> isTapped = ValueNotifier<int>(0);
+
   final PageController _pageController = PageController();
+
   final ValueNotifier<int> _currentPageOffer = ValueNotifier<int>(0);
-  final ValueNotifier<String> selectedCategory = ValueNotifier<String>(
-    'All',
-  ); // Use ValueNotifier
+
+  final ValueNotifier<String> selectedCategory = ValueNotifier<String>('All');
+  // Use ValueNotifier
   final ValueNotifier<int> quantity = ValueNotifier<int>(3);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -201,13 +211,16 @@ class HomeScreen extends StatelessWidget {
                   IconButton(
                     icon: Icon(Icons.tune),
                     onPressed: () {
-                      displayDash = 5;
-                      print(displayDash);
+                      widget.displayDash = 5;
+                      setState(() {
+                        widget.displayDash = 5;
+                      });
+                      print(widget.displayDash);
                     },
                   ),
                 ],
               ),
-              if (displayDash == 0)
+              if (widget.displayDash == 0)
                 DashboardSection(
                   selectedIndexNotifier: isTapped,
                   selectedCategoryNotifier: selectedCategory,
@@ -220,7 +233,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               SizedBox(height: responsiveHeight(context, 20)),
 
-              if (displayDash == 1)
+              if (widget.displayDash == 1)
                 Column(
                   children: [
                     SizedBox(height: responsiveHeight(context, 25)),
@@ -240,7 +253,7 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
 
-              if (displayDash == 2)
+              if (widget.displayDash == 2)
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -468,7 +481,90 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
 
-              if (displayDash == 5) Column(children: []),
+              if (widget.displayDash == 5)
+                if (widget.displayDash == 5)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            'Filter',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 24.sp,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: responsiveHeight(context, 5)),
+                      Row(
+                        children: [
+                          Text(
+                            'Price Range',
+                            style: TextStyle(color: Colors.grey[500]),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: responsiveHeight(context, 5)),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              decoration: InputDecoration(
+                                hintText:
+                                    'Min', // Keeps text in place without moving
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.green,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.green,
+                                    width: 2,
+                                  ), // More emphasis on tap
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: responsiveWidth(context, 15)),
+                          Expanded(
+                            child: TextField(
+                              decoration: InputDecoration(
+                                hintText: 'Max',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.green,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.green,
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
             ],
           ),
         ),
