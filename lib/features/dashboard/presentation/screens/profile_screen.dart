@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodtek/core/utils/app_constants.dart';
 import 'package:foodtek/core/utils/responsive.dart';
+import 'package:foodtek/features/dashboard/presentation/screens/custom_navigation_bar_screen.dart';
+import 'package:foodtek/features/dashboard/presentation/screens/home_screen.dart';
 
 import '../../../../core/utils/app_colors.dart';
 
@@ -23,7 +25,13 @@ class ProfileScreen extends StatelessWidget {
         title: Row(
           children: [
             IconButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed:
+                  () => Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => NavigationBarScreen(),
+                    ),
+                  ),
               icon: Icon(Icons.arrow_back, fill: 1.0),
             ),
             const Text('Profile'),

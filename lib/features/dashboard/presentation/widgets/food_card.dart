@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foodtek/core/utils/app_colors.dart';
 import 'package:foodtek/core/utils/responsive.dart';
+import 'package:foodtek/features/dashboard/presentation/screens/home_screen.dart';
+import 'package:foodtek/features/dashboard/presentation/screens/order_now.dart';
 
 class FoodCard extends StatelessWidget {
   final String image;
@@ -112,7 +114,12 @@ class FoodCard extends StatelessWidget {
                   Spacer(),
                   IconButton(
                     onPressed: () {
-                      //TODO
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomeScreen(displayDash: 2),
+                        ),
+                      );
                     },
                     icon: Icon(Icons.add_circle_rounded), // Corrected here
                     color: AppColors.green,

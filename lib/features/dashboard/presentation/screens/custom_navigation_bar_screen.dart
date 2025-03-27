@@ -32,9 +32,10 @@ class _NavigationBarPageState extends State<NavigationBarScreen> {
     final List<Widget> pages = [
       HomeScreen(displayDash: 0),
       HomeScreen(displayDash: 1),
-      ProfileScreen(),
+      HomeScreen(displayDash: 0),
+      HomeScreen(displayDash: 3),
 
-      HistoryScreen(),
+      //HistoryScreen(),
       ProfileScreen(),
     ];
 

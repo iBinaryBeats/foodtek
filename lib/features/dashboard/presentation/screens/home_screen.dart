@@ -3,13 +3,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodtek/core/utils/app_constants.dart';
 import 'package:foodtek/core/utils/responsive.dart';
+import 'package:foodtek/features/dashboard/presentation/screens/custom_navigation_bar_screen.dart';
 import 'package:foodtek/features/dashboard/presentation/screens/favorites_screen.dart';
 import 'package:foodtek/features/dashboard/presentation/screens/history_screen.dart';
+import 'package:foodtek/features/dashboard/presentation/screens/order_now.dart';
 import 'package:foodtek/features/dashboard/presentation/widgets/category_card.dart';
 import 'package:foodtek/features/dashboard/presentation/widgets/dashboard_dots.dart';
 import 'package:foodtek/features/dashboard/presentation/widgets/dashboard_title.dart';
 import 'package:foodtek/features/dashboard/presentation/widgets/home_section.dart';
 import 'package:foodtek/features/widgets/bottomsheet/notification_bottom_sheet.dart';
+import 'package:foodtek/features/widgets/custom/custom_button.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../widgets/food_card.dart';
@@ -95,13 +98,14 @@ class HomeScreen extends StatelessWidget {
     {'imagePath': 'assets/images/item4.png', 'price': 8.20},
   ];
 
+  final ValueNotifier<double> _spicyLevel = ValueNotifier<double>(5.0);
   final ValueNotifier<int> isTapped = ValueNotifier<int>(0);
   final PageController _pageController = PageController();
   final ValueNotifier<int> _currentPageOffer = ValueNotifier<int>(0);
   final ValueNotifier<String> selectedCategory = ValueNotifier<String>(
     'All',
   ); // Use ValueNotifier
-
+  final ValueNotifier<int> quantity = ValueNotifier<int>(3);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -193,6 +197,15 @@ class HomeScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(12.0),
                   child: SvgPicture.asset(AppConstant.searchIcon),
                 ),
+                trailing: [
+                  IconButton(
+                    icon: Icon(Icons.tune),
+                    onPressed: () {
+                      displayDash = 5;
+                      print(displayDash);
+                    },
+                  ),
+                ],
               ),
               if (displayDash == 0)
                 DashboardSection(
@@ -226,6 +239,236 @@ class HomeScreen extends StatelessWidget {
                     SizedBox(height: responsiveHeight(context, 20)),
                   ],
                 ),
+
+              if (displayDash == 2)
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: responsiveHeight(context, 25)),
+                      Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Image.asset('assets/images/order_now.png'),
+                      ),
+                      SizedBox(height: responsiveHeight(context, 15)),
+
+                      Text(
+                        "Cheeseburger Wendy's Burger",
+                        style: TextStyle(
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Inter',
+                        ),
+                      ),
+                      SizedBox(height: responsiveHeight(context, 5)),
+                      Row(
+                        children: [
+                          Icon(Icons.star, color: Colors.amber),
+                          Icon(Icons.star, color: Colors.amber),
+                          Icon(Icons.star, color: Colors.amber),
+                          Icon(Icons.star, color: Colors.amber),
+                          Icon(Icons.star_half, color: Colors.amber),
+                          SizedBox(width: 5),
+                          Text(
+                            "4.5 (89 reviews)",
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        ],
+                      ),
+
+                      SizedBox(height: 5),
+                      Row(
+                        children: [
+                          Text(
+                            "\$7.99",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.green,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Text(
+                            "\$9.5",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey,
+                              decoration: TextDecoration.lineThrough,
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      SizedBox(height: responsiveHeight(context, 5)),
+                      Text(
+                        "Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt. Velit non est cillum consequat cupidatat ex Lorem laboris labore aliqua ad duis eu laborum",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      SizedBox(height: responsiveHeight(context, 20)),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: responsiveHeight(context, 18),
+                          vertical: responsiveHeight(context, 8),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Spicy",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.grey[400],
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            Text(
+                              "Quantity",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.grey[400],
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: ValueListenableBuilder<double>(
+                              valueListenable: _spicyLevel,
+                              builder: (context, value, child) {
+                                return SliderTheme(
+                                  data: SliderThemeData(
+                                    trackHeight: 5.0,
+                                    activeTrackColor: Colors.red,
+                                    thumbColor: Colors.white,
+                                    overlayColor: Colors.red.withOpacity(0.2),
+                                  ),
+                                  child: Slider(
+                                    value: value,
+                                    min: 0,
+                                    max: 10,
+
+                                    label: value.round().toString(),
+                                    activeColor: Colors.red,
+                                    onChanged: (newValue) {
+                                      _spicyLevel.value = newValue;
+                                      // _spicyLevel.value=_spicyLevel.value.toInt();
+                                      print(
+                                        _spicyLevel.value.toInt(),
+                                      ); // i wanna send the value to the api as Int make it sense
+                                    },
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+
+                          SizedBox(width: responsiveWidth(context, 50)),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  if (quantity.value >= 1) quantity.value--;
+                                  print('test');
+                                },
+                                icon: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.green),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Icon(
+                                    Icons.remove,
+                                    color: Colors.green,
+                                  ),
+                                ),
+                              ),
+                              ValueListenableBuilder(
+                                valueListenable: quantity,
+                                builder: (context, value, child) {
+                                  return Text(
+                                    quantity.value.toString(),
+                                    style: TextStyle(
+                                      fontSize: 16.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  );
+                                },
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  quantity.value++;
+                                  print('test');
+                                },
+                                icon: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.green,
+                                    border: Border.all(color: Colors.green),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Icon(Icons.add, color: Colors.white),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 12),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Mild',
+                              style: TextStyle(
+                                fontSize: 10.sp,
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              width:
+                                  (MediaQuery.of(context).size.width / 2) - 50,
+                            ),
+                            Text(
+                              'Hot',
+                              style: TextStyle(
+                                fontSize: 10.sp,
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: responsiveHeight(context, 20)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CustomButton(
+                            text: 'Add To Cart',
+                            textColor: Colors.white,
+                            onPressed: () {
+                              //TODO
+                            },
+                            buttonColor: Colors.green,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+
+              if (displayDash == 5) Column(children: []),
             ],
           ),
         ),
