@@ -4,6 +4,9 @@ import 'package:foodtek/core/utils/app_colors.dart';
 import 'package:foodtek/core/utils/responsive.dart';
 import 'package:foodtek/features/dashboard/presentation/screens/home_screen.dart';
 import 'package:foodtek/features/dashboard/presentation/screens/order_now.dart';
+import 'package:foodtek/features/dashboard/presentation/widgets/search_bar_widget.dart';
+
+import '../screens/custom_navigation_bar_screen.dart';
 
 class FoodCard extends StatelessWidget {
   final String image;
@@ -117,7 +120,8 @@ class FoodCard extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => HomeScreen(displayDash: 2),
+                          builder:
+                              (context) => NavigationBarScreen(initialPage: 2),
                         ),
                       );
                     },
