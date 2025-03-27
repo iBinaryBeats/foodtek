@@ -121,7 +121,7 @@ class FoodCard extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder:
-                              (context) => NavigationBarScreen(initialPage: 2),
+                              (context) => NavigationBarScreen(initialPage: 99),
                         ),
                       );
                     },

@@ -88,7 +88,6 @@ class _NavigationBarPageState extends State<NavigationBarScreen> {
     final List<Widget> pages = [
       HomeScreen(displayDash: 0),
       HomeScreen(displayDash: 1),
-      HomeScreen(displayDash: 0),
       HomeScreen(displayDash: 3),
       ProfileScreen(),
     ];
@@ -96,7 +95,7 @@ class _NavigationBarPageState extends State<NavigationBarScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body:
-          currentPage == 4
+          currentPage == 3
               ? _bottomBarBody()
               : Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -133,8 +132,6 @@ class _NavigationBarPageState extends State<NavigationBarScreen> {
 
   Widget _bottomBarBody() {
     switch (currentPage) {
-      case 5:
-        return FilterWidget(context: context);
       case 0:
         return DashboardSection(
           selectedIndexNotifier: isTapped,
@@ -147,9 +144,15 @@ class _NavigationBarPageState extends State<NavigationBarScreen> {
 
       case 1:
         return CustomFavoritesSection(title: 'Top Picks for You');
-      case 4:
-        return ProfileScreen();
+
       case 2:
+        return SizedBox();
+      case 3:
+        return ProfileScreen();
+
+      case 5:
+        return FilterWidget(context: context);
+      case 99:
         return FoodItemDetails(
           imageUrl: 'assets/images/order_now',
           foodName: 'foodName',
@@ -350,25 +353,25 @@ class _CustomNavigationBarScreenItemsState
             ),
             label: 'Favorites',
           ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              '',
-              width: responsiveWidth(context, 24),
-              height: responsiveHeight(context, 24),
-              colorFilter: const ColorFilter.mode(
-                Color(0xff484C52),
-                BlendMode.srcIn,
-              ),
-            ),
-            activeIcon: SvgPicture.asset(
-              '',
-              width: responsiveWidth(context, 24),
-              height: responsiveHeight(context, 24),
-              colorFilter: ColorFilter.mode(AppColors.green, BlendMode.srcIn),
-            ),
-            label: '',
-          ),
 
+          // BottomNavigationBarItem(
+          //   icon: SvgPicture.asset(
+          //     '',
+          //     width: responsiveWidth(context, 24),
+          //     height: responsiveHeight(context, 24),
+          //     colorFilter: const ColorFilter.mode(
+          //       Color(0xff484C52),
+          //       BlendMode.srcIn,
+          //     ),
+          //   ),
+          //   activeIcon: SvgPicture.asset(
+          //     '',
+          //     width: responsiveWidth(context, 24),
+          //     height: responsiveHeight(context, 24),
+          //     colorFilter: ColorFilter.mode(AppColors.green, BlendMode.srcIn),
+          //   ),
+          //   label: '',
+          // ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               AppConstant.historyIcon,
