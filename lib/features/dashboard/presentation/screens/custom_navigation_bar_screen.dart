@@ -88,7 +88,7 @@ class _NavigationBarPageState extends State<NavigationBarScreen> {
     final List<Widget> pages = [
       HomeScreen(displayDash: 0),
       HomeScreen(displayDash: 1),
-      HomeScreen(displayDash: 3),
+      //HomeScreen(displayDash: 3),
       ProfileScreen(),
     ];
 
@@ -143,16 +143,14 @@ class _NavigationBarPageState extends State<NavigationBarScreen> {
         );
 
       case 1:
-        return CustomFavoritesSection(title: 'Top Picks for You');
+        return CustomFavoritesSection(title: 'Favourite');
 
-      case 2:
-        return SizedBox();
       case 3:
         return ProfileScreen();
 
       case 5:
         return FilterWidget(context: context);
-      case 99:
+      case 2:
         return FoodItemDetails(
           imageUrl: 'assets/images/order_now',
           foodName: 'foodName',
