@@ -42,7 +42,7 @@ class HomeAppBar extends StatelessWidget {
           ),
           title: Row(
             children: [
-              Text(title, style: TextStyle(color: AppColors.greyC)),
+              Text(title, style: TextStyle(color: Colors.grey)),
               SizedBox(width: responsiveWidth(context, 5)),
               Container(
                 height: responsiveHeight(context, 18),
@@ -55,7 +55,10 @@ class HomeAppBar extends StatelessWidget {
               ),
             ],
           ),
-          subtitle: Text(subtitle, style: TextStyle(color: Colors.black)),
+          subtitle: Text(
+            subtitle,
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          ),
           trailing: Container(
             height: responsiveHeight(context, 34),
             width: responsiveWidth(context, 34),

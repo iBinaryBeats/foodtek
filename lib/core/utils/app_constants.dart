@@ -21,6 +21,8 @@ class AppConstant {
   static const String favIcon = '${iconsPath}favorites.svg';
   static const String historyIcon = '${iconsPath}history.svg';
   static const String buyIcon = '${iconsPath}but.svg';
+  static const String buyNowPatrren = '${iconsPath}buyNowPath.png';
+
   static const String profileIcon = '${iconsPath}profile.svg';
   static const String homeIcon = '${iconsPath}home.svg';
   static const String avatarIcon = '${iconsPath}avatar.svg';

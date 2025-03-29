@@ -14,6 +14,7 @@ import '../../../../core/utils/responsive.dart';
 import '../widgets/favourite_screen_customized.dart';
 import '../widgets/home_section.dart';
 import '../widgets/search_bar_widget.dart';
+import 'orders_menu.dart';
 
 class NavigationBarScreen extends StatefulWidget {
   final int initialPage;
@@ -83,6 +84,7 @@ class _NavigationBarPageState extends State<NavigationBarScreen> {
     currentPage = widget.initialPage;
   }
 
+  @override
   @override
   Widget build(BuildContext context) {
     final List<Widget> pages = [
@@ -183,7 +185,10 @@ class CustomFloatingActionButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(50),
           ),
           onPressed: () {
-            //TODO:Navigate to :
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => OrdersMenu()),
+            );
           },
           backgroundColor: AppColors.green,
           child: Container(
