@@ -22,6 +22,13 @@ class OrdersMenu extends StatelessWidget {
       'quantity': ValueNotifier<int>(0), // Use ValueNotifier for each item
     },
     {
+      'image': 'assets/images/menu_item.png',
+      'title': 'Chicken Burger',
+      'subTitle': 'Burger Factory LTD',
+      'price': 20,
+      'quantity': ValueNotifier<int>(0), // Use ValueNotifier for each item
+    },
+    {
       'image': 'assets/images/onion_pizza.png',
       'title': 'Onion Pizza',
       'subTitle': 'Pizza Palace',
@@ -100,6 +107,8 @@ class OrdersMenu extends StatelessWidget {
                                       horizontal: responsiveWidth(context, 24),
                                     ),
                                     child: Slidable(
+                                      closeOnScroll: true,
+                                      direction: Axis.horizontal,
                                       startActionPane: ActionPane(
                                         motion: ScrollMotion(),
                                         children: [
@@ -108,6 +117,10 @@ class OrdersMenu extends StatelessWidget {
                                               //TODO
                                               print('test');
                                             },
+                                            padding: const EdgeInsets.all(30),
+                                            borderRadius: BorderRadius.circular(
+                                              18,
+                                            ),
                                             backgroundColor: Color(0xffFDAC1D),
                                             foregroundColor: Colors.white,
                                             icon: Icons.delete,
@@ -116,7 +129,7 @@ class OrdersMenu extends StatelessWidget {
                                         ],
                                       ),
                                       child: Container(
-                                        margin: EdgeInsets.only(bottom: 12),
+                                        margin: EdgeInsets.only(bottom: 16),
                                         padding: EdgeInsets.all(4),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(
@@ -135,7 +148,6 @@ class OrdersMenu extends StatelessWidget {
                                             maxLines: 1,
                                             style: TextStyle(
                                               fontWeight: FontWeight.w800,
-                                              fontFamily: 'Ubuntu',
                                             ),
                                           ),
                                           subtitle: Column(
@@ -157,6 +169,8 @@ class OrdersMenu extends StatelessWidget {
                                           ),
                                           trailing: Row(
                                             mainAxisSize: MainAxisSize.min,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
                                             children: [
                                               IconButton(
                                                 onPressed: () {
@@ -191,12 +205,16 @@ class OrdersMenu extends StatelessWidget {
                                                   value,
                                                   child,
                                                 ) {
-                                                  return Text(
-                                                    value.toString(),
-                                                    style: TextStyle(
-                                                      fontSize: 16.sp,
-                                                      fontWeight:
-                                                          FontWeight.bold,
+                                                  return SizedBox(
+                                                    width: 18.w,
+                                                    height: 16.h,
+                                                    child: Text(
+                                                      value.toString(),
+                                                      style: TextStyle(
+                                                        fontSize: 16.sp,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
                                                     ),
                                                   );
                                                 },
@@ -205,7 +223,7 @@ class OrdersMenu extends StatelessWidget {
                                                 onPressed: () {
                                                   if (ordered_items[index]['quantity']
                                                           .value <
-                                                      24)
+                                                      19)
                                                     ordered_items[index]['quantity']
                                                         .value++;
                                                 },
