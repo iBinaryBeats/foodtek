@@ -19,14 +19,14 @@ class OrdersMenu extends StatelessWidget {
       'title': 'Chicken Burger',
       'subTitle': 'Burger Factory LTD',
       'price': 20,
-      'quantity': ValueNotifier<int>(0), // Use ValueNotifier for each item
+      'quantity': ValueNotifier<int>(0),
     },
     {
       'image': 'assets/images/menu_item.png',
       'title': 'Chicken Burger',
       'subTitle': 'Burger Factory LTD',
       'price': 20,
-      'quantity': ValueNotifier<int>(0), // Use ValueNotifier for each item
+      'quantity': ValueNotifier<int>(0),
     },
     {
       'image': 'assets/images/onion_pizza.png',

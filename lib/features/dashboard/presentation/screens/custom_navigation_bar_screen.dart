@@ -152,16 +152,9 @@ class _NavigationBarPageState extends State<NavigationBarScreen> {
 
       //case 5:
       //return FilterWidget(context: context);
+
       // case 2:
-      //   return FoodItemDetails(
-      //     imageUrl: 'assets/images/order_now',
-      //     foodName: 'foodName',
-      //     rating: 4,
-      //     reviewsCount: 5,
-      //     price: 5,
-      //     originalPrice: 5,
-      //     description: 'description',
-      //   );
+      //   return OrdersMenu();
       default:
         return SizedBox();
     }
