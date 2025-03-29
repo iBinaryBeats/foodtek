@@ -261,7 +261,91 @@ class OrdersMenu extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Center(child: Text('History')),
+                  Column(
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: ordered_items.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Container(
+                                padding: EdgeInsets.all(16),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  border: Border.all(color: Colors.green),
+                                ),
+                                child: ListTile(
+                                  leading: Image.asset(
+                                    ordered_items[index]['image'],
+                                  ),
+                                  title: Text(
+                                    ordered_items[index]['title'],
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Inter',
+                                    ),
+                                  ),
+                                  subtitle: Text(
+                                    ordered_items[index]['subTitle'],
+                                  ),
+                                  trailing: SingleChildScrollView(
+                                    scrollDirection: Axis.vertical,
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                left: 18.0,
+                                              ),
+                                              child: Icon(
+                                                Icons.access_time_rounded,
+                                                color: Colors.green,
+                                              ),
+                                            ),
+                                            SizedBox(width: 10),
+                                            Text(
+                                              '25.3.2024',
+                                              style: TextStyle(
+                                                color: Color(0xff3B3B3B),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+
+                                        Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            IconButton(
+                                              onPressed: () {
+                                                //TODO
+                                              },
+                                              icon: Image.asset(
+                                                'assets/icons/rotate_icon.png',
+                                              ),
+                                            ),
+
+                                            Text(
+                                              'Reorder',
+                                              style: TextStyle(
+                                                color: Colors.green,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
