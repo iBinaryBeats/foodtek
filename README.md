@@ -1,10 +1,9 @@
 # 🧾 Project Overview – FoodTek 
 
-Description
 FoodTek is a smart food delivery application that enables users to browse, order,track food seamlessly and pay using e-wallet .
 
 # ⚙️ Workflow (How It Works)
-Authentication,Browsing Items,Cart and Checkout,Order Tracking and Reviews and Ratings.
+- - Authentication,Browsing Items,Cart and Checkout,Order Tracking and Reviews and Ratings.
 
 
 
